@@ -3,9 +3,11 @@ package controll;
 import java.sql.Connection;
 import model.KhachHang;
 import helper.ConnectSQL;
+import helper.MessageDialogHelper;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class KhachHangControll {
     }
 
     public KhachHang findId(String maKH) throws Exception {
-        String sql = "Select *from KhachHang where TrangThai = 0 and MaKhachHang = ?";
+        String sql = "Select *from KhachHang where MaKhachHang = ?";
         try (Connection con = ConnectSQL.getConnection();
                 PreparedStatement pstm = con.prepareCall(sql);) {
             pstm.setString(1, maKH);
@@ -42,7 +44,7 @@ public class KhachHangControll {
     }
 
     public List<KhachHang> findAll() throws Exception {
-        String sql = "Select *from KhachHang where TrangThai = 0 ";
+        String sql = "Select *from KhachHang";
         try (
                 Connection con = ConnectSQL.getConnection();
                 PreparedStatement pstm = con.prepareCall(sql);) {
@@ -57,12 +59,11 @@ public class KhachHangControll {
         }
     }
 
-    public List<KhachHang> findAllName(String tenKH) throws Exception {
-        String sql = "Select *from KhachHang where TrangThai = 0 and TenKhachHang like N'%?%' ";
+    public List<KhachHang> findKH_ByName(String tenKH) throws Exception {
+        String sql = "Select *from KhachHang where TenKhachHang like N'%" + tenKH + "%'";
         try (
                 Connection con = ConnectSQL.getConnection();
                 PreparedStatement pstm = con.prepareCall(sql);) {
-            pstm.setString(1, tenKH);
             try (ResultSet rs = pstm.executeQuery();) {
                 List<KhachHang> list = new ArrayList<>();
                 while (rs.next()) {
@@ -99,8 +100,8 @@ public class KhachHangControll {
             return pstm.executeUpdate() > 0;
         }
     }
-    
-     public boolean delete(String maKH) throws Exception {
+
+    public boolean delete(String maKH) throws Exception {
         String sql = "Delete dbo.KhachHang"
                 + " where MaKhachHang = ?";
         try (Connection con = ConnectSQL.getConnection();

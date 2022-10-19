@@ -11,9 +11,9 @@ import javax.swing.table.TableColumnModel;
 import model.KhachHang;
 
 public class frmKhachHang extends javax.swing.JFrame {
-
+    
     private DefaultTableModel tbModel;
-
+    
     public frmKhachHang() throws Exception {
         initComponents();
         txtMaKH.setEnabled(false);
@@ -21,7 +21,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         initTable();
         loadDataToTable();
     }
-
+    
     private void initTable() {
         tbModel = new DefaultTableModel();
         tbModel.setColumnIdentifiers(new String[]{"Mã Khách Hàng", "Tên Khách Hàng", "Địa Chỉ", "SĐT", "Giới Tính"});
@@ -33,7 +33,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(120);
         columnModel.getColumn(4).setPreferredWidth(40);
     }
-
+    
     public void resetText() {
         this.txtMaKH.setText("");
         this.txtTenKH.setText("");
@@ -41,7 +41,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         this.txtDT.setText("");
         this.txtMaKH.requestFocus();
     }
-
+    
     private void loadDataToTable() {
         try {
             KhachHangControll khachHangControll = new KhachHangControll();
@@ -58,9 +58,8 @@ public class frmKhachHang extends javax.swing.JFrame {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
             System.out.println(e.getMessage());
         }
-
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -123,6 +122,7 @@ public class frmKhachHang extends javax.swing.JFrame {
                 "Mã Khách Hàng", "Tên Khách Hàng", "Địa Chỉ", "Số Điện Thoại", "Giới Tính"
             }
         ));
+        tblKhachHang.setMaximumSize(new java.awt.Dimension(1000, 0));
         tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblKhachHangMouseClicked(evt);
@@ -272,8 +272,8 @@ public class frmKhachHang extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnThem)
@@ -291,6 +291,7 @@ public class frmKhachHang extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         resetText();
+        txtTimKiem.setText("");
         txtMaKH.setEnabled(true);
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -303,6 +304,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại chưa đúng, vui lòng kiểm tra lại (10 <= SĐT <= 11)");
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
+            txtMaKH.requestFocus();
             return;
         }
         try {
@@ -317,10 +319,12 @@ public class frmKhachHang extends javax.swing.JFrame {
                 MessageDialogHelper.ShowMessageDialog(null, "Khách Hàng đã được lưu thành công", "Thông báo");
                 loadDataToTable();
                 resetText();
+                txtTimKiem.setText("");
             }
         } catch (Exception e) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Khách hàng có mã: " + txtMaKH.getText() + " đã tồn tại, Nhập lại Mã khách hàng mới !!!");
             txtMaKH.setText("");
+            txtMaKH.setEnabled(true);
             txtMaKH.requestFocus();
         }
     }//GEN-LAST:event_btnLuuActionPerformed
@@ -337,7 +341,9 @@ public class frmKhachHang extends javax.swing.JFrame {
             return;
         }
         if (MessageDialogHelper.ShowConfirmDialog(this, "Hỏi", "Bạn có muốn cập nhật thông tin khách hàng ?") == JOptionPane.NO_OPTION) {
+            MessageDialogHelper.ShowMessageDialog(this, "Bạn chưa thay đổi thông tin khách hàng !!!", "Thông báo");
             resetText();
+            txtTimKiem.setText("");
             return;
         }
         try {
@@ -348,11 +354,11 @@ public class frmKhachHang extends javax.swing.JFrame {
             kh.setSoDienThoai(txtDT.getText());
             kh.setGioiTinh(rbNam.isSelected() ? 1 : 0);
             KhachHangControll khachHangControll = new KhachHangControll();
-
             if (khachHangControll.update(kh)) {
                 MessageDialogHelper.ShowMessageDialog(this, "Cập nhật thông tin khách hàng thành công.", "Thông báo");
                 loadDataToTable();
                 resetText();
+                txtTimKiem.setText("");
             } else {
                 MessageDialogHelper.ShowErrorDialog(this, "Không thể cập nhật thông tin khách hàng !!!", "Cảnh báo");
             }
@@ -394,26 +400,30 @@ public class frmKhachHang extends javax.swing.JFrame {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         StringBuffer sb = new StringBuffer();
-        DataValidator.ValidatorEmpty(txtTimKiem, sb, "Vui lòng nhập tên  Khách Hàng cần tìm !!!");
+        DataValidator.ValidatorEmpty(txtTimKiem, sb, "Vui lòng nhập tên khách hàng cần tìm !!!");
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
+            txtTimKiem.requestFocus();
             return;
         }
+        String ten = txtTimKiem.getText();
         try {
             KhachHangControll khachHangControll = new KhachHangControll();
-            List<KhachHang> list = khachHangControll.findAllName(txtTimKiem.getText());
+            List<KhachHang> list = khachHangControll.findKH_ByName(ten);
             if (list != null) {
                 tbModel.setRowCount(0);
                 list.forEach((item) -> {
                     tbModel.addRow(new Object[]{
-                        item.getMaKhachHang(), item.getTenKhachHang(), item.getDiaChi(),
-                        item.getSoDienThoai(), item.getGioiTinh() == 1 ? "Nam" : "Nữ"
-                    });
+                        item.getMaKhachHang(),
+                        item.getTenKhachHang(),
+                        item.getDiaChi(),
+                        item.getGioiTinh(),
+                        item.getGioiTinh() == 1 ? "Nam" : "Nữ",});
                 });
                 tbModel.fireTableDataChanged();
                 resetText();
-            } else {
-                MessageDialogHelper.ShowMessageDialog(this, "Tên Khách Hàng cần tìm không tồn tại trong danh sách", "Thông báo");
+            } else if(list == null) {
+                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Không tìm thấy khách hàng có tên trong danh sách!!!");
             }
         } catch (Exception e) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
@@ -431,6 +441,7 @@ public class frmKhachHang extends javax.swing.JFrame {
                 MessageDialogHelper.ShowMessageDialog(this, "Xóa thông tin khách hàng thành công !!!", "Thông báo");
                 loadDataToTable();
                 resetText();
+                txtTimKiem.setText("");
             } else {
                 MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Xóa thất bại");
             }
