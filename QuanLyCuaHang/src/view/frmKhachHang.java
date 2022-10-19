@@ -11,9 +11,9 @@ import javax.swing.table.TableColumnModel;
 import model.KhachHang;
 
 public class frmKhachHang extends javax.swing.JFrame {
-    
+
     private DefaultTableModel tbModel;
-    
+
     public frmKhachHang() throws Exception {
         initComponents();
         txtMaKH.setEnabled(false);
@@ -21,7 +21,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         initTable();
         loadDataToTable();
     }
-    
+
     private void initTable() {
         tbModel = new DefaultTableModel();
         tbModel.setColumnIdentifiers(new String[]{"Mã Khách Hàng", "Tên Khách Hàng", "Địa Chỉ", "SĐT", "Giới Tính"});
@@ -33,7 +33,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(120);
         columnModel.getColumn(4).setPreferredWidth(40);
     }
-    
+
     public void resetText() {
         this.txtMaKH.setText("");
         this.txtTenKH.setText("");
@@ -41,7 +41,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         this.txtDT.setText("");
         this.txtMaKH.requestFocus();
     }
-    
+
     private void loadDataToTable() {
         try {
             KhachHangControll khachHangControll = new KhachHangControll();
@@ -59,7 +59,7 @@ public class frmKhachHang extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -176,6 +176,11 @@ public class frmKhachHang extends javax.swing.JFrame {
         btnThoat.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnThoat.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-exit-32.png")); // NOI18N
         btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel6.setText("Tìm Kiếm");
@@ -304,9 +309,9 @@ public class frmKhachHang extends javax.swing.JFrame {
         DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại chưa đúng, vui lòng kiểm tra lại (10 <= SĐT <= 11)");
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
-            txtMaKH.requestFocus();
             return;
         }
+        txtMaKH.requestFocus();
         try {
             KhachHang kh = new KhachHang();
             kh.setMaKhachHang(txtMaKH.getText());
@@ -322,7 +327,7 @@ public class frmKhachHang extends javax.swing.JFrame {
                 txtTimKiem.setText("");
             }
         } catch (Exception e) {
-            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Khách hàng có mã: " + txtMaKH.getText() + " đã tồn tại, Nhập lại Mã khách hàng mới !!!");
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Khách hàng có mã: " + txtMaKH.getText() + " đã tồn tại, Vui lòng nhập lại Mã khách hàng mới !!!");
             txtMaKH.setText("");
             txtMaKH.setEnabled(true);
             txtMaKH.requestFocus();
@@ -330,12 +335,11 @@ public class frmKhachHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
         StringBuffer sb = new StringBuffer();
-        DataValidator.ValidatorEmpty(txtMaKH, sb, "Mã Khách Hàng không được để trống !!!");
-        DataValidator.ValidatorEmpty(txtTenKH, sb, "Tên Khách Hàng không được để trống !!!");
-        DataValidator.ValidatorEmpty(txtDiaChi, sb, "Địa Chỉ Khách Hàng không được để trống !!!");
-        DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại Khách Hàng không được để trống !!!");
+        DataValidator.ValidatorEmpty(txtMaKH, sb, "Mã khách hàng không được để trống !!!");
+        DataValidator.ValidatorEmpty(txtTenKH, sb, "Tên khách hàng không được để trống !!!");
+        DataValidator.ValidatorEmpty(txtDiaChi, sb, "Địa chỉ khách hàng không được để trống !!!");
+        DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại khách hàng không được để trống !!!");
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
             return;
@@ -422,7 +426,7 @@ public class frmKhachHang extends javax.swing.JFrame {
                 });
                 tbModel.fireTableDataChanged();
                 resetText();
-            } else if(list == null) {
+            } else if (list == null) {
                 MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Không tìm thấy khách hàng có tên trong danh sách!!!");
             }
         } catch (Exception e) {
@@ -432,27 +436,36 @@ public class frmKhachHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        if (MessageDialogHelper.ShowConfirmDialog(this, "Hỏi", "Bạn có muốn xóa thông tin Khách Hàng") == JOptionPane.NO_OPTION) {
-            return;
-        }
-        try {
-            KhachHangControll khachHangControll = new KhachHangControll();
-            if (khachHangControll.delete(txtMaKH.getText())) {
-                MessageDialogHelper.ShowMessageDialog(this, "Xóa thông tin khách hàng thành công !!!", "Thông báo");
-                loadDataToTable();
-                resetText();
-                txtTimKiem.setText("");
-            } else {
-                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Xóa thất bại");
+        int row = tblKhachHang.getSelectedRow();
+        if (row >= 0) {
+            if (MessageDialogHelper.ShowConfirmDialog(this, "Hỏi", "Bạn có muốn xóa thông tin khách hàng") == JOptionPane.NO_OPTION) {
+                return;
             }
-        } catch (Exception e) {
-            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
+            try {
+                KhachHangControll khachHangControll = new KhachHangControll();
+                if (khachHangControll.delete(txtMaKH.getText())) {
+                    MessageDialogHelper.ShowMessageDialog(this, "Xóa thông tin khách hàng thành công !!!", "Thông báo");
+                    loadDataToTable();
+                    resetText();
+                    txtTimKiem.setText("");
+                } else {
+                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Xóa thất bại");
+                }
+            } catch (Exception e) {
+                MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
+            }
+        } else {
+            MessageDialogHelper.ShowMessageDialog(this, "Vui lòng lựa chọn khách hàng bạn muốn xóa !!!", "Thông báo");
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+        if (MessageDialogHelper.ShowConfirmDialog(this, "Thông báo", "Bạn có muốn thoát !!!") == JOptionPane.YES_NO_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnThoatActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -476,8 +489,6 @@ public class frmKhachHang extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frmNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
