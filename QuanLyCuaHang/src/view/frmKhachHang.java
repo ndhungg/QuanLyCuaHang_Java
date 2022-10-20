@@ -1,4 +1,3 @@
-
 import controll.KhachHangControll;
 import helper.DataValidator;
 import helper.MessageDialogHelper;
@@ -240,7 +239,7 @@ public class frmKhachHang extends javax.swing.JFrame {
                             .addComponent(txtTimKiem))))
                 .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
-                .addGap(261, 261, 261)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -276,7 +275,7 @@ public class frmKhachHang extends javax.swing.JFrame {
                             .addComponent(txtDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,12 +339,12 @@ public class frmKhachHang extends javax.swing.JFrame {
         DataValidator.ValidatorEmpty(txtTenKH, sb, "Tên khách hàng không được để trống !!!");
         DataValidator.ValidatorEmpty(txtDiaChi, sb, "Địa chỉ khách hàng không được để trống !!!");
         DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại khách hàng không được để trống !!!");
+        DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại chưa đúng, vui lòng kiểm tra lại (10 <= SĐT <= 11)");
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
             return;
         }
         if (MessageDialogHelper.ShowConfirmDialog(this, "Hỏi", "Bạn có muốn cập nhật thông tin khách hàng ?") == JOptionPane.NO_OPTION) {
-            MessageDialogHelper.ShowMessageDialog(this, "Bạn chưa thay đổi thông tin khách hàng !!!", "Thông báo");
             resetText();
             txtTimKiem.setText("");
             return;

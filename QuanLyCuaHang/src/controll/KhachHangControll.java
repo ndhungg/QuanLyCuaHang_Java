@@ -3,11 +3,9 @@ package controll;
 import java.sql.Connection;
 import model.KhachHang;
 import helper.ConnectSQL;
-import helper.MessageDialogHelper;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,6 +2,7 @@ package helper;
 
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class DataValidator {
@@ -11,6 +12,15 @@ public class DataValidator {
             field.requestFocus();
         }else{
             field.setBackground(Color.white);
+        }
+    }
+    
+    public static void ValidatorEmpty(JTextArea fileArea,StringBuffer sb,String errorMessage){
+        if(fileArea.getText().equals("")){
+            sb.append(errorMessage).append("\n");
+            fileArea.requestFocus();
+        }else{
+            fileArea.setBackground(Color.white);
         }
     }
     
