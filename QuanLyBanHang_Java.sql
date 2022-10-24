@@ -4,6 +4,7 @@ go
 Use QuanLyBanHang_Java
 go
 
+
 --Câu lệnh khởi tạo bảng Nhân viên
  Create table NhanVien
  (

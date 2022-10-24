@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import model.KhachHang;
 import model.NhaCungCap;
 
 public class frmNhaCungCap extends javax.swing.JFrame {
@@ -148,6 +149,11 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         btnSua.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnSua.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-update-32.png")); // NOI18N
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnLuu.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnLuu.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-save-32.png")); // NOI18N
@@ -161,10 +167,20 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         btnTimKiem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnTimKiem.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-search-32.png")); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-exit-32.png")); // NOI18N
         jButton6.setText("Thoát");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel7.setText("Email :");
@@ -194,17 +210,16 @@ public class frmNhaCungCap extends javax.swing.JFrame {
                                         .addComponent(jLabel5)
                                         .addGap(110, 110, 110)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, 0))
+                                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnThem)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
@@ -233,17 +248,14 @@ public class frmNhaCungCap extends javax.swing.JFrame {
                     .addComponent(txtMaNCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtTenNCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtTenNCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -322,7 +334,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
             cnn.setEmail(txtEmail.getText());
             NhaCungCapControll cnnControll = new NhaCungCapControll();
             if (cnnControll.Insert(cnn)) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thêm mới nhà cung cấp thành công", "Thông báo");
+                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhà cung cấp thành công !!!");
                 loadDataTable();
                 resetText();
             }
@@ -346,7 +358,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
                 try {
                     NhaCungCapControll nccControll = new NhaCungCapControll();
                     if (nccControll.delete(txtMaNCC.getText())) {
-                        MessageDialogHelper.ShowMessageDialog(this, "Xóa nhà cung cấp: " + txtTenNCC.getText() + " thành công", "Thông báo");
+                        MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Xóa nhà cung cấp: " + txtTenNCC.getText() + " thành công");
                         resetText();
                         loadDataTable();
                     }
@@ -356,6 +368,82 @@ public class frmNhaCungCap extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        StringBuffer sb = new StringBuffer();
+        DataValidator.ValidatorEmpty(txtMaNCC, sb, "Mã nhà cung cấp không được để trống !!!");
+        DataValidator.ValidatorEmpty(txtTenNCC, sb, "Tên nhà cung cấp không được để trống !!!");
+        DataValidator.ValidatorEmpty(txtDiaChi, sb, "Địa chỉ không được để trống !!!");
+        DataValidator.ValidatorEmpty(txtSDT, sb, "Điện thoại không được để trống !!!");
+        DataValidator.ValidatorNumberPhone(txtSDT, sb, "Số điện thoại (10 <= SĐT <= 11)");
+        DataValidator.ValidatorEmpty(txtEmail, sb, "Email không được để trống !!!");
+        if (sb.length() > 0) {
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
+            resetText();
+            return;
+        }
+        if (MessageDialogHelper.ShowConfirmDialog(this, "Thông báo", "Bạn có muốn thay đổi thông tin nhà cung cấp !!") == JOptionPane.NO_OPTION) {
+            return;
+        }
+        try {
+            NhaCungCap ncc = new NhaCungCap();
+            ncc.setMaNhaCungCap(txtMaNCC.getText());
+            ncc.setTenNhaCungCap(txtTenNCC.getText());
+            ncc.setDiaChi(txtDiaChi.getText());
+            ncc.setSoDienThoai(txtSDT.getText());
+            ncc.setEmail(txtEmail.getText());
+            NhaCungCapControll nccControll = new NhaCungCapControll();
+            if (nccControll.update(ncc)) {
+                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Cập nhật thông tin nhà cung cấp thành công !!");
+                loadDataTable();
+                resetText();
+            }
+        } catch (Exception e) {
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Không thể thay đổi thông tin nhà cung cấp !!");
+            resetText();
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        if (MessageDialogHelper.ShowConfirmDialog(null, "Thông báo", "Bạn có muốn thoát !!!") == JOptionPane.YES_NO_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        // TODO add your handling code here:
+        StringBuffer sb = new StringBuffer();
+        DataValidator.ValidatorEmpty(txtTimKiem, sb, "Bạn chưa nhập tên nhà cung cấp cần tìm !!!");
+        if (sb.length() > 0) {
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
+            txtTimKiem.requestFocus();
+            return;
+        }
+        try {
+            String ten = txtTimKiem.getText();
+            NhaCungCapControll nccControll = new NhaCungCapControll();
+            List<NhaCungCap> list = nccControll.findByName(ten);
+            if (list != null) {
+                tbModel.setRowCount(0);
+                list.forEach((item) -> {
+                    tbModel.addRow(new Object[]{
+                        item.getMaNhaCungCap(),
+                        item.getTenNhaCungCap(),
+                        item.getDiaChi(),
+                        item.getSoDienThoai(),
+                        item.getEmail(),});
+                });
+                tbModel.fireTableDataChanged();
+                resetText();
+            } else {
+                loadDataTable();
+                resetText();
+            }
+        } catch (Exception e) {
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
+        }
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

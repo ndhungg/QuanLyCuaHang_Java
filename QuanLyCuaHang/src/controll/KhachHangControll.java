@@ -87,7 +87,7 @@ public class KhachHangControll {
     public boolean update(KhachHang kh) throws Exception {
         String sql = "UPDATE dbo.KhachHang"
                 + " SET TenKhachHang = ?,DiaChi = ? ,SoDienThoai = ?,GioiTinh = ?"
-                + " where  TrangThai = 0 and MaKhachHang = ?";
+                + " where MaKhachHang = ?";
         try (Connection con = ConnectSQL.getConnection();
                 PreparedStatement pstm = con.prepareCall(sql);) {
             pstm.setString(1, kh.getTenKhachHang());

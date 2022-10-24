@@ -1,3 +1,4 @@
+
 import controll.KhachHangControll;
 import helper.DataValidator;
 import helper.MessageDialogHelper;
@@ -299,6 +300,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         txtMaKH.setEnabled(true);
     }//GEN-LAST:event_btnThemActionPerformed
 
+
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         StringBuffer sb = new StringBuffer();
         DataValidator.ValidatorEmpty(txtMaKH, sb, "Mã khách hàng không được để trống !!!");
@@ -320,7 +322,7 @@ public class frmKhachHang extends javax.swing.JFrame {
             kh.setSoDienThoai(txtDT.getText());
             KhachHangControll khachHangControll = new KhachHangControll();
             if (khachHangControll.Insert(kh)) {
-                MessageDialogHelper.ShowMessageDialog(null, "Khách Hàng đã được lưu thành công", "Thông báo");
+                MessageDialogHelper.ShowMessageDialog(null, "Thông báo", "Lưu thông tin khách hàng thành công !!!");
                 loadDataToTable();
                 resetText();
                 txtTimKiem.setText("");
@@ -358,12 +360,12 @@ public class frmKhachHang extends javax.swing.JFrame {
             kh.setGioiTinh(rbNam.isSelected() ? 1 : 0);
             KhachHangControll khachHangControll = new KhachHangControll();
             if (khachHangControll.update(kh)) {
-                MessageDialogHelper.ShowMessageDialog(this, "Cập nhật thông tin khách hàng thành công.", "Thông báo");
+                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Cập nhật thông tin khách hàng thành công.");
                 loadDataToTable();
                 resetText();
                 txtTimKiem.setText("");
             } else {
-                MessageDialogHelper.ShowErrorDialog(this, "Không thể cập nhật thông tin khách hàng !!!", "Cảnh báo");
+                MessageDialogHelper.ShowErrorDialog(this, "Cảnh Báo", "Không thể cập nhật thông tin khách hàng !!!");
             }
         } catch (Exception e) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
@@ -443,7 +445,7 @@ public class frmKhachHang extends javax.swing.JFrame {
             try {
                 KhachHangControll khachHangControll = new KhachHangControll();
                 if (khachHangControll.delete(txtMaKH.getText())) {
-                    MessageDialogHelper.ShowMessageDialog(this, "Xóa thông tin khách hàng thành công !!!", "Thông báo");
+                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Xóa thông tin khách hàng thành công !!!");
                     loadDataToTable();
                     resetText();
                     txtTimKiem.setText("");
@@ -454,7 +456,7 @@ public class frmKhachHang extends javax.swing.JFrame {
                 MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
             }
         } else {
-            MessageDialogHelper.ShowMessageDialog(this, "Vui lòng lựa chọn khách hàng bạn muốn xóa !!!", "Thông báo");
+            MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Vui lòng lựa chọn khách hàng bạn muốn xóa !!!");
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 

@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public class MessageDialogHelper {
 
-    public static void ShowMessageDialog(Component parent, String content, String title) {
+    public static void ShowMessageDialog(Component parent, String title, String content) {
         JOptionPane.showMessageDialog(parent, content, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
