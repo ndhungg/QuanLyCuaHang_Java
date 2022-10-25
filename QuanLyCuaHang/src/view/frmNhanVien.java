@@ -183,7 +183,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         }
 
         btnTimKiem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnTimKiem.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-add-32.png")); // NOI18N
+        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-search-32.png"))); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +192,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         });
 
         btnXoa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-delete-32.png")); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-delete-32.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +202,7 @@ public class frmNhanVien extends javax.swing.JFrame {
 
         btnSua.setBackground(new java.awt.Color(255, 255, 255));
         btnSua.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnSua.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-update-32.png")); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-update-32.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,7 +211,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         });
 
         btnLuu.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnLuu.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-save-32.png")); // NOI18N
+        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-save-32.png"))); // NOI18N
         btnLuu.setText("Lưu");
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +220,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         });
 
         btnThoat.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnThoat.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-exit-32.png")); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-exit-32.png"))); // NOI18N
         btnThoat.setText("Thoát");
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,7 +235,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtDiaChi);
 
         btnKhongLuu.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnKhongLuu.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-cancel-32 (1).png")); // NOI18N
+        btnKhongLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-cancel-32 (1).png"))); // NOI18N
         btnKhongLuu.setText("Không Lưu");
         btnKhongLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +244,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         });
 
         btnThem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-add-32.png")); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-add-32.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,34 +413,40 @@ public class frmNhanVien extends javax.swing.JFrame {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
         }
         try {
+            boolean checkID = false;
             NhanVien nv = new NhanVien();
             NhanVienControll nvControll = new NhanVienControll();
             int row = tblNhanVien.getRowCount();
             String ma = txtMaNV.getText().trim();
             for (int i = 0; i < row; i++) {
                 if (tblNhanVien.getValueAt(i, 0).equals(ma)) {
-                    MessageDialogHelper.ShowErrorDialog(this, "Thông báo", "Mã nhân viên có mã: " + ma + " đã tồn tại trong danh sách!!!");
-                    txtMaNV.requestFocus();
+                    checkID = true;
                     break;
                 }
             }
-            nv.setMaNhanVien(txtMaNV.getText());
-            nv.setTenNhanVien(txtTenNV.getText());
-            String layMaChucVuTheoTen = nvControll.layMaChucVuTheoTen(cbbChucVu.getSelectedItem().toString());
-            String date = sdf.format(dateChooser.getDate());
-            nv.setMaChucVu(layMaChucVuTheoTen);
-            nv.setGioiTinh(rbNam.isSelected() ? 1 : 0);
-            nv.setDiaChi(txtDiaChi.getText());
-            nv.setSoDienThoai(txtDT.getText());
-            nv.setNgaySinh(date);
-            if (nvControll.insert(nv)) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhân viên thành công !!!");
-                loadDataToTable();
-                resetText();
+            if (checkID) {
+                MessageDialogHelper.ShowErrorDialog(this, "Thông báo", "Mã nhân viên có mã: " + ma + " đã tồn tại trong danh sách!!!");
+                txtMaNV.requestFocus();
             } else {
-                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Thêm mới nhân viên thất bại !!!");
+                nv.setMaNhanVien(txtMaNV.getText());
+                nv.setTenNhanVien(txtTenNV.getText());
+                String layMaChucVuTheoTen = nvControll.layMaChucVuTheoTen(cbbChucVu.getSelectedItem().toString());
+                String date = sdf.format(dateChooser.getDate());
+                nv.setMaChucVu(layMaChucVuTheoTen);
+                nv.setGioiTinh(rbNam.isSelected() ? 1 : 0);
+                nv.setDiaChi(txtDiaChi.getText());
+                nv.setSoDienThoai(txtDT.getText());
+                nv.setNgaySinh(date);
+                if (nvControll.insert(nv)) {
+                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhân viên thành công !!!");
+                    loadDataToTable();
+                    resetText();
+                } else {
+                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Thêm mới nhân viên thất bại !!!");
+                }
             }
         } catch (Exception e) {
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 

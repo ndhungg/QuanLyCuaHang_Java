@@ -129,7 +129,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblNhaCungCap);
 
         btnThem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-add-32.png")); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-add-32.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +138,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         });
 
         btnXoa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-delete-32.png")); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-delete-32.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         });
 
         btnSua.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnSua.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-update-32.png")); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-update-32.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +156,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         });
 
         btnLuu.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnLuu.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-save-32.png")); // NOI18N
+        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-save-32.png"))); // NOI18N
         btnLuu.setText("Lưu");
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +165,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         });
 
         btnTimKiem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnTimKiem.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-search-32.png")); // NOI18N
+        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-search-32.png"))); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +174,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         });
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-exit-32.png")); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-exit-32.png"))); // NOI18N
         jButton6.setText("Thoát");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,30 +326,36 @@ public class frmNhaCungCap extends javax.swing.JFrame {
             return;
         }
         try {
+            boolean checkID = false;
             NhaCungCap cnn = new NhaCungCap();
             int row = tblNhaCungCap.getRowCount();
             String ma = txtMaNCC.getText().trim();
             for (int i = 0; i < row; i++) {
                 if (ma.equalsIgnoreCase(tblNhaCungCap.getValueAt(i, 0).toString())) {
-                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Nhà cung cấp có mã: " + ma + " đã tồn tại !!!");
-                    txtMaNCC.requestFocus();
+                    checkID = true;
                     break;
                 }
             }
-            cnn.setMaNhaCungCap(txtMaNCC.getText());
-            cnn.setTenNhaCungCap(txtTenNCC.getText());
-            cnn.setDiaChi(txtDiaChi.getText());
-            cnn.setSoDienThoai(txtSDT.getText());
-            cnn.setEmail(txtEmail.getText());
-            NhaCungCapControll cnnControll = new NhaCungCapControll();
-            if (cnnControll.Insert(cnn)) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhà cung cấp thành công !!!");
-                loadDataTable();
-                resetText();
+            if (checkID) {
+                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Nhà cung cấp có mã: " + ma + " đã tồn tại !!!");
+                txtMaNCC.requestFocus();
             } else {
-                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Thêm mới nhà cung cấp thất bại");
+                cnn.setMaNhaCungCap(txtMaNCC.getText());
+                cnn.setTenNhaCungCap(txtTenNCC.getText());
+                cnn.setDiaChi(txtDiaChi.getText());
+                cnn.setSoDienThoai(txtSDT.getText());
+                cnn.setEmail(txtEmail.getText());
+                NhaCungCapControll cnnControll = new NhaCungCapControll();
+                if (cnnControll.Insert(cnn)) {
+                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhà cung cấp thành công !!!");
+                    loadDataTable();
+                    resetText();
+                } else {
+                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Thêm mới nhà cung cấp thất bại");
+                }
             }
         } catch (Exception e) {
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 

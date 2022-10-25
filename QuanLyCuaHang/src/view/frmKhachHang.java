@@ -138,7 +138,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         }
 
         btnThem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-add-32.png")); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-add-32.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         });
 
         btnXoa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-delete-32.png")); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-delete-32.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +156,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         });
 
         btnSua.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnSua.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-update-32.png")); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-update-32.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +165,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         });
 
         btnLuu.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnLuu.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-save-32.png")); // NOI18N
+        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-save-32.png"))); // NOI18N
         btnLuu.setText("Lưu");
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +174,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         });
 
         btnThoat.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnThoat.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-exit-32.png")); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-exit-32.png"))); // NOI18N
         btnThoat.setText("Thoát");
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +186,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         jLabel6.setText("Tìm Kiếm");
 
         btnTimKiem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnTimKiem.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\DoAnJava\\QuanLyCuaHang\\src\\HinhAnh\\icons8-search-32.png")); // NOI18N
+        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-search-32.png"))); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,31 +314,38 @@ public class frmKhachHang extends javax.swing.JFrame {
         }
         txtMaKH.requestFocus();
         try {
+            boolean checkID = false;
             KhachHang kh = new KhachHang();
             int row = tblKhachHang.getRowCount();
             String ma = txtMaKH.getText();
             for (int i = 0; i < row; i++) {
                 if (ma.equalsIgnoreCase(tblKhachHang.getValueAt(i, 0).toString())) {
-                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Khách hàng có mã: " + ma + " đã tồn tại trong danh sách !!!");
-                    txtMaKH.setEnabled(true);
-                    txtMaKH.requestFocus();
+                    checkID = true;
+                    break;
                 }
             }
-            kh.setMaKhachHang(txtMaKH.getText());
-            kh.setTenKhachHang(txtTenKH.getText());
-            kh.setGioiTinh(rbNam.isSelected() ? 1 : 0);
-            kh.setDiaChi(txtDiaChi.getText());
-            kh.setSoDienThoai(txtDT.getText());
-            KhachHangControll khachHangControll = new KhachHangControll();
-            if (khachHangControll.Insert(kh)) {
-                MessageDialogHelper.ShowMessageDialog(null, "Thông báo", "Lưu thông tin khách hàng thành công !!!");
-                loadDataToTable();
-                resetText();
-                txtTimKiem.setText("");
+            if (checkID) {
+                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Khách hàng có mã: " + ma + " đã tồn tại trong danh sách !!!");
+                txtMaKH.setEnabled(true);
+                txtMaKH.requestFocus();
             } else {
-                MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Lưu thông tin khách hàng thất bại");
+                kh.setMaKhachHang(txtMaKH.getText());
+                kh.setTenKhachHang(txtTenKH.getText());
+                kh.setGioiTinh(rbNam.isSelected() ? 1 : 0);
+                kh.setDiaChi(txtDiaChi.getText());
+                kh.setSoDienThoai(txtDT.getText());
+                KhachHangControll khachHangControll = new KhachHangControll();
+                if (khachHangControll.Insert(kh)) {
+                    MessageDialogHelper.ShowMessageDialog(null, "Thông báo", "Lưu thông tin khách hàng thành công !!!");
+                    loadDataToTable();
+                    resetText();
+                    txtTimKiem.setText("");
+                } else {
+                    MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Lưu thông tin khách hàng thất bại");
+                }
             }
         } catch (Exception e) {
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 

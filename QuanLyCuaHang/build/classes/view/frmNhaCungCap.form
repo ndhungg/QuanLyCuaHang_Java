@@ -247,7 +247,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\DELL\Desktop\DoAnJava\QuanLyCuaHang\src\HinhAnh\icons8-add-32.png"/>
+          <Image iconType="3" name="/HinhAnh/icons8-add-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
       </Properties>
@@ -261,7 +261,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\DELL\Desktop\DoAnJava\QuanLyCuaHang\src\HinhAnh\icons8-delete-32.png"/>
+          <Image iconType="3" name="/HinhAnh/icons8-delete-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
       </Properties>
@@ -275,7 +275,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\DELL\Desktop\DoAnJava\QuanLyCuaHang\src\HinhAnh\icons8-update-32.png"/>
+          <Image iconType="3" name="/HinhAnh/icons8-update-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
       </Properties>
@@ -289,7 +289,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\DELL\Desktop\DoAnJava\QuanLyCuaHang\src\HinhAnh\icons8-save-32.png"/>
+          <Image iconType="3" name="/HinhAnh/icons8-save-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
       </Properties>
@@ -303,7 +303,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\DELL\Desktop\DoAnJava\QuanLyCuaHang\src\HinhAnh\icons8-search-32.png"/>
+          <Image iconType="3" name="/HinhAnh/icons8-search-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
       </Properties>
@@ -317,7 +317,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\DELL\Desktop\DoAnJava\QuanLyCuaHang\src\HinhAnh\icons8-exit-32.png"/>
+          <Image iconType="3" name="/HinhAnh/icons8-exit-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
       </Properties>
