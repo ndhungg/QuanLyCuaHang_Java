@@ -33,6 +33,20 @@ public class frmNhanVien extends javax.swing.JFrame {
         txtDT.setText("");
     }
 
+    private boolean checkId() throws Exception {
+        int row = tblNhanVien.getRowCount();
+        String ma = txtMaNV.getText().trim();
+        for (int i = 0; i < row; i++) {
+            if (tblNhanVien.getValueAt(i, 0).equals(ma)) {
+                MessageDialogHelper.ShowErrorDialog(this, "Thông báo", "Mã nhân viên có mã: " + ma + " đã tồn tại trong danh sách!!!");
+                txtMaNV.setText("");
+                txtMaNV.requestFocus();
+                break;
+            }
+        }
+        return true;
+    }
+
     private void initTable() {
         tbModel = new DefaultTableModel();
         tbModel.setColumnIdentifiers(new String[]{"Mã Nhân Viên", "Tên Nhân Viên", "Chức Vụ", "Giới Tính", "Địa Chỉ", "Số Điện Thoại", "Ngày Sinh"});
@@ -251,9 +265,9 @@ public class frmNhanVien extends javax.swing.JFrame {
                         .addComponent(btnXoa)
                         .addGap(75, 75, 75)
                         .addComponent(btnSua)
-                        .addGap(75, 75, 75)
-                        .addComponent(btnLuu)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLuu)
+                        .addGap(56, 56, 56)
                         .addComponent(btnKhongLuu)
                         .addGap(75, 75, 75)
                         .addComponent(btnThoat))
@@ -346,11 +360,11 @@ public class frmNhanVien extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnXoa)
                         .addComponent(btnSua)
-                        .addComponent(btnLuu)
                         .addComponent(btnThem))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnThoat)
-                        .addComponent(btnKhongLuu)))
+                        .addComponent(btnKhongLuu)
+                        .addComponent(btnLuu)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -359,12 +373,11 @@ public class frmNhanVien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-
-        String ten = txtTimKiem.getText();
+        String ten = txtTimKiem.getText().trim();
         try {
             NhanVienControll nhanVienControll = new NhanVienControll();
             List<NhanVien> list = nhanVienControll.findKH_ByName(ten);
-            if (list != null) {
+            if (list.size() > 0) {
                 tbModel.setRowCount(0);
                 list.forEach((item) -> {
                     tbModel.addRow(new Object[]{
@@ -378,8 +391,10 @@ public class frmNhanVien extends javax.swing.JFrame {
                 });
                 tbModel.fireTableDataChanged();
                 resetText();
-            } else if (list == null) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Không tìm thấy Nhân viên có tên trong danh sách!!!");
+            } else {
+                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Không tìm thấy Nhân viên có tên: " + txtTimKiem.getText() + " trong danh sách!!!");
+                loadDataToTable();
+                txtTimKiem.setText("");
             }
         } catch (Exception e) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
@@ -399,35 +414,33 @@ public class frmNhanVien extends javax.swing.JFrame {
         }
         try {
             NhanVien nv = new NhanVien();
-            int row = tblNhanVien.getSelectedRow();
             NhanVienControll nvControll = new NhanVienControll();
-            String maNV = txtMaNV.getText();
-            String maNVTable = tblNhanVien.getValueAt(row, 0).toString();
-            if (maNV.equals(maNVTable)) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Nhân Viên có mã: " + maNVTable + " đã tồn tại trong danh sách");
-                txtMaNV.setText("");
-                txtMaNV.requestFocus();
-            } else {
-                nv.setMaNhanVien(txtMaNV.getText());
-                nv.setTenNhanVien(txtTenNV.getText());
-                String layMaChucVuTheoTen = nvControll.layMaChucVuTheoTen(cbbChucVu.getSelectedItem().toString());
-                String date = sdf.format(dateChooser.getDate());
-                nv.setMaChucVu(layMaChucVuTheoTen);
-                nv.setGioiTinh(rbNam.isSelected() ? 1 : 0);
-                nv.setDiaChi(txtDiaChi.getText());
-                nv.setSoDienThoai(txtDT.getText());
-                nv.setNgaySinh(date);
-                if (nvControll.insert(nv)) {
-                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhân viên thành công !!!");
-                    loadDataToTable();
-                    resetText();
-                } else {
-                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Thêm mới nhân viên thất bại !!!");
+            int row = tblNhanVien.getRowCount();
+            String ma = txtMaNV.getText().trim();
+            for (int i = 0; i < row; i++) {
+                if (tblNhanVien.getValueAt(i, 0).equals(ma)) {
+                    MessageDialogHelper.ShowErrorDialog(this, "Thông báo", "Mã nhân viên có mã: " + ma + " đã tồn tại trong danh sách!!!");
+                    txtMaNV.requestFocus();
+                    break;
                 }
             }
+            nv.setMaNhanVien(txtMaNV.getText());
+            nv.setTenNhanVien(txtTenNV.getText());
+            String layMaChucVuTheoTen = nvControll.layMaChucVuTheoTen(cbbChucVu.getSelectedItem().toString());
+            String date = sdf.format(dateChooser.getDate());
+            nv.setMaChucVu(layMaChucVuTheoTen);
+            nv.setGioiTinh(rbNam.isSelected() ? 1 : 0);
+            nv.setDiaChi(txtDiaChi.getText());
+            nv.setSoDienThoai(txtDT.getText());
+            nv.setNgaySinh(date);
+            if (nvControll.insert(nv)) {
+                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhân viên thành công !!!");
+                loadDataToTable();
+                resetText();
+            } else {
+                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Thêm mới nhân viên thất bại !!!");
+            }
         } catch (Exception e) {
-            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
-            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 

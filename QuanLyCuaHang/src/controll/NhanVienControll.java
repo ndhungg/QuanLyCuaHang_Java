@@ -144,6 +144,25 @@ public class NhanVienControll {
         }
     }
 
+    public List<NhanVien> layMaNhanVien() throws Exception {
+        String sql = "Select MaNhanVien "
+                + " from NhanVien nv, ChucVu cv"
+                + " where nv.MaChucVu = cv.MaChucVu";
+        String ma = "";
+        try (Connection conn = ConnectSQL.getConnection();
+                PreparedStatement pstm = conn.prepareCall(sql);) {
+             List<NhanVien> listID = new ArrayList<>();
+            try (ResultSet rs = pstm.executeQuery();) {
+                while (rs.next()) {
+                    NhanVien nv = new NhanVien();
+                    nv.setMaNhanVien(rs.getString("MaNhanVien"));
+                   listID.add(nv);
+                }
+               return listID;
+            }
+        }
+    }
+
     public List<NhanVien> findKH_ByName(String ten) throws Exception {
         String sql = "select nv.MaNhanVien, nv.TenNhanVien, cv.TenChucVu, nv.DiaChi, nv.SoDienThoai, nv.NgaySinh,nv.GioiTinh"
                 + " from NhanVien nv , ChucVu cv"

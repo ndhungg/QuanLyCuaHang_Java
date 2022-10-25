@@ -1,3 +1,4 @@
+
 import controll.KhachHangControll;
 import helper.DataValidator;
 import helper.MessageDialogHelper;
@@ -314,34 +315,30 @@ public class frmKhachHang extends javax.swing.JFrame {
         txtMaKH.requestFocus();
         try {
             KhachHang kh = new KhachHang();
-
-            int row = tblKhachHang.getSelectedRow();
+            int row = tblKhachHang.getRowCount();
             String ma = txtMaKH.getText();
-            String maKHtoTable = tblKhachHang.getValueAt(row, 0).toString();
-            if (ma.equals(maKHtoTable)) {
-                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Khách hàng có mã: " + ma + " đã tồn tại trong danh sách !!!");
-                txtMaKH.setEnabled(true);
-                txtMaKH.setText("");
-                txtMaKH.requestFocus();
-            } else {
-                kh.setMaKhachHang(txtMaKH.getText());
-                kh.setTenKhachHang(txtTenKH.getText());
-                kh.setGioiTinh(rbNam.isSelected() ? 1 : 0);
-                kh.setDiaChi(txtDiaChi.getText());
-                kh.setSoDienThoai(txtDT.getText());
-                KhachHangControll khachHangControll = new KhachHangControll();
-                if (khachHangControll.Insert(kh)) {
-                    MessageDialogHelper.ShowMessageDialog(null, "Thông báo", "Lưu thông tin khách hàng thành công !!!");
-                    loadDataToTable();
-                    resetText();
-                    txtTimKiem.setText("");
-                } else {
-                    MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Lưu thông tin khách hàng thất bại");
+            for (int i = 0; i < row; i++) {
+                if (ma.equalsIgnoreCase(tblKhachHang.getValueAt(i, 0).toString())) {
+                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Khách hàng có mã: " + ma + " đã tồn tại trong danh sách !!!");
+                    txtMaKH.setEnabled(true);
+                    txtMaKH.requestFocus();
                 }
             }
+            kh.setMaKhachHang(txtMaKH.getText());
+            kh.setTenKhachHang(txtTenKH.getText());
+            kh.setGioiTinh(rbNam.isSelected() ? 1 : 0);
+            kh.setDiaChi(txtDiaChi.getText());
+            kh.setSoDienThoai(txtDT.getText());
+            KhachHangControll khachHangControll = new KhachHangControll();
+            if (khachHangControll.Insert(kh)) {
+                MessageDialogHelper.ShowMessageDialog(null, "Thông báo", "Lưu thông tin khách hàng thành công !!!");
+                loadDataToTable();
+                resetText();
+                txtTimKiem.setText("");
+            } else {
+                MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Lưu thông tin khách hàng thất bại");
+            }
         } catch (Exception e) {
-            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
-            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 
@@ -420,24 +417,25 @@ public class frmKhachHang extends javax.swing.JFrame {
             txtTimKiem.requestFocus();
             return;
         }
-        String ten = txtTimKiem.getText();
+        String ten = txtTimKiem.getText().trim();
         try {
             KhachHangControll khachHangControll = new KhachHangControll();
             List<KhachHang> list = khachHangControll.findKH_ByName(ten);
-            if (list != null) {
+            if (list.size() > 0) {
                 tbModel.setRowCount(0);
                 list.forEach((item) -> {
                     tbModel.addRow(new Object[]{
                         item.getMaKhachHang(),
                         item.getTenKhachHang(),
                         item.getDiaChi(),
-                        item.getGioiTinh(),
+                        item.getSoDienThoai(),
                         item.getGioiTinh() == 1 ? "Nam" : "Nữ",});
                 });
                 tbModel.fireTableDataChanged();
                 resetText();
-            } else if (list == null) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Không tìm thấy khách hàng có tên trong danh sách!!!");
+            } else {
+                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Không tìm thấy khách hàng có tên: " + txtTimKiem.getText() + " trong danh sách!!!");
+                loadDataToTable();
             }
         } catch (Exception e) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());

@@ -327,33 +327,29 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         }
         try {
             NhaCungCap cnn = new NhaCungCap();
-            int row = tblNhaCungCap.getSelectedRow();
-            String maNCCtoTable = tblNhaCungCap.getValueAt(row, 0).toString();
-            String ma = txtMaNCC.getText();
-            
-            if(ma.equals(maNCCtoTable)){
-                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Nhà cung cấp có mã: " + ma +" đã tồn tại !!!");
-                txtMaNCC.setText("");
-                txtMaNCC.requestFocus();
-            }
-            else{
-                cnn.setMaNhaCungCap(txtMaNCC.getText());
-                cnn.setTenNhaCungCap(txtTenNCC.getText());
-                cnn.setDiaChi(txtDiaChi.getText());
-                cnn.setSoDienThoai(txtSDT.getText());
-                cnn.setEmail(txtEmail.getText());
-                NhaCungCapControll cnnControll = new NhaCungCapControll();
-                if (cnnControll.Insert(cnn)) {
-                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhà cung cấp thành công !!!");
-                    loadDataTable();
-                    resetText();
-                } else {
-                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Thêm mới nhà cung cấp thất bại");
+            int row = tblNhaCungCap.getRowCount();
+            String ma = txtMaNCC.getText().trim();
+            for (int i = 0; i < row; i++) {
+                if (ma.equalsIgnoreCase(tblNhaCungCap.getValueAt(i, 0).toString())) {
+                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Nhà cung cấp có mã: " + ma + " đã tồn tại !!!");
+                    txtMaNCC.requestFocus();
+                    break;
                 }
             }
+            cnn.setMaNhaCungCap(txtMaNCC.getText());
+            cnn.setTenNhaCungCap(txtTenNCC.getText());
+            cnn.setDiaChi(txtDiaChi.getText());
+            cnn.setSoDienThoai(txtSDT.getText());
+            cnn.setEmail(txtEmail.getText());
+            NhaCungCapControll cnnControll = new NhaCungCapControll();
+            if (cnnControll.Insert(cnn)) {
+                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhà cung cấp thành công !!!");
+                loadDataTable();
+                resetText();
+            } else {
+                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Thêm mới nhà cung cấp thất bại");
+            }
         } catch (Exception e) {
-            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
-            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 
@@ -424,7 +420,6 @@ public class frmNhaCungCap extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
         StringBuffer sb = new StringBuffer();
         DataValidator.ValidatorEmpty(txtTimKiem, sb, "Bạn chưa nhập tên nhà cung cấp cần tìm !!!");
         if (sb.length() > 0) {
@@ -433,10 +428,10 @@ public class frmNhaCungCap extends javax.swing.JFrame {
             return;
         }
         try {
-            String ten = txtTimKiem.getText();
+            String ten = txtTimKiem.getText().trim();
             NhaCungCapControll nccControll = new NhaCungCapControll();
             List<NhaCungCap> list = nccControll.findByName(ten);
-            if (list != null) {
+            if (list.size() > 0) {
                 tbModel.setRowCount(0);
                 list.forEach((item) -> {
                     tbModel.addRow(new Object[]{
@@ -449,8 +444,9 @@ public class frmNhaCungCap extends javax.swing.JFrame {
                 tbModel.fireTableDataChanged();
                 resetText();
             } else {
+                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Không tìm thấy nhà cung cấp có tên: " + txtTimKiem.getText() + " trong danh sách");
                 loadDataTable();
-                resetText();
+                txtTimKiem.setText("");
             }
         } catch (Exception e) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
