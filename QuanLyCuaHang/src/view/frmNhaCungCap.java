@@ -327,21 +327,33 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         }
         try {
             NhaCungCap cnn = new NhaCungCap();
-            cnn.setMaNhaCungCap(txtMaNCC.getText());
-            cnn.setTenNhaCungCap(txtTenNCC.getText());
-            cnn.setDiaChi(txtDiaChi.getText());
-            cnn.setSoDienThoai(txtSDT.getText());
-            cnn.setEmail(txtEmail.getText());
-            NhaCungCapControll cnnControll = new NhaCungCapControll();
-            if (cnnControll.Insert(cnn)) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhà cung cấp thành công !!!");
-                loadDataTable();
-                resetText();
+            int row = tblNhaCungCap.getSelectedRow();
+            String maNCCtoTable = tblNhaCungCap.getValueAt(row, 0).toString();
+            String ma = txtMaNCC.getText();
+            
+            if(ma.equals(maNCCtoTable)){
+                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Nhà cung cấp có mã: " + ma +" đã tồn tại !!!");
+                txtMaNCC.setText("");
+                txtMaNCC.requestFocus();
+            }
+            else{
+                cnn.setMaNhaCungCap(txtMaNCC.getText());
+                cnn.setTenNhaCungCap(txtTenNCC.getText());
+                cnn.setDiaChi(txtDiaChi.getText());
+                cnn.setSoDienThoai(txtSDT.getText());
+                cnn.setEmail(txtEmail.getText());
+                NhaCungCapControll cnnControll = new NhaCungCapControll();
+                if (cnnControll.Insert(cnn)) {
+                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhà cung cấp thành công !!!");
+                    loadDataTable();
+                    resetText();
+                } else {
+                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Thêm mới nhà cung cấp thất bại");
+                }
             }
         } catch (Exception e) {
-            MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Nhà cung cấp có mã : " + txtMaNCC.getText() + " đã tồn tại trong danh sách");
-            txtMaNCC.setText("");
-            txtMaNCC.requestFocus();
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 

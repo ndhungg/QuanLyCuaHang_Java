@@ -1,4 +1,3 @@
-
 import controll.KhachHangControll;
 import helper.DataValidator;
 import helper.MessageDialogHelper;
@@ -315,23 +314,34 @@ public class frmKhachHang extends javax.swing.JFrame {
         txtMaKH.requestFocus();
         try {
             KhachHang kh = new KhachHang();
-            kh.setMaKhachHang(txtMaKH.getText());
-            kh.setTenKhachHang(txtTenKH.getText());
-            kh.setGioiTinh(rbNam.isSelected() ? 1 : 0);
-            kh.setDiaChi(txtDiaChi.getText());
-            kh.setSoDienThoai(txtDT.getText());
-            KhachHangControll khachHangControll = new KhachHangControll();
-            if (khachHangControll.Insert(kh)) {
-                MessageDialogHelper.ShowMessageDialog(null, "Thông báo", "Lưu thông tin khách hàng thành công !!!");
-                loadDataToTable();
-                resetText();
-                txtTimKiem.setText("");
+
+            int row = tblKhachHang.getSelectedRow();
+            String ma = txtMaKH.getText();
+            String maKHtoTable = tblKhachHang.getValueAt(row, 0).toString();
+            if (ma.equals(maKHtoTable)) {
+                MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Khách hàng có mã: " + ma + " đã tồn tại trong danh sách !!!");
+                txtMaKH.setEnabled(true);
+                txtMaKH.setText("");
+                txtMaKH.requestFocus();
+            } else {
+                kh.setMaKhachHang(txtMaKH.getText());
+                kh.setTenKhachHang(txtTenKH.getText());
+                kh.setGioiTinh(rbNam.isSelected() ? 1 : 0);
+                kh.setDiaChi(txtDiaChi.getText());
+                kh.setSoDienThoai(txtDT.getText());
+                KhachHangControll khachHangControll = new KhachHangControll();
+                if (khachHangControll.Insert(kh)) {
+                    MessageDialogHelper.ShowMessageDialog(null, "Thông báo", "Lưu thông tin khách hàng thành công !!!");
+                    loadDataToTable();
+                    resetText();
+                    txtTimKiem.setText("");
+                } else {
+                    MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Lưu thông tin khách hàng thất bại");
+                }
             }
         } catch (Exception e) {
-            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Khách hàng có mã: " + txtMaKH.getText() + " đã tồn tại, Vui lòng nhập lại Mã khách hàng mới !!!");
-            txtMaKH.setText("");
-            txtMaKH.setEnabled(true);
-            txtMaKH.requestFocus();
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 
@@ -374,7 +384,6 @@ public class frmKhachHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
-        // TODO add your handling code here:
         try {
             txtMaKH.setEnabled(false);
             int row = tblKhachHang.getSelectedRow();
@@ -461,7 +470,6 @@ public class frmKhachHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        // TODO add your handling code here:
         if (MessageDialogHelper.ShowConfirmDialog(this, "Thông báo", "Bạn có muốn thoát !!!") == JOptionPane.YES_NO_OPTION) {
             System.exit(0);
         }

@@ -359,10 +359,10 @@ public class frmNhanVien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-       
+
         String ten = txtTimKiem.getText();
         try {
-             NhanVienControll nhanVienControll = new NhanVienControll();
+            NhanVienControll nhanVienControll = new NhanVienControll();
             List<NhanVien> list = nhanVienControll.findKH_ByName(ten);
             if (list != null) {
                 tbModel.setRowCount(0);
@@ -399,28 +399,36 @@ public class frmNhanVien extends javax.swing.JFrame {
         }
         try {
             NhanVien nv = new NhanVien();
+            int row = tblNhanVien.getSelectedRow();
             NhanVienControll nvControll = new NhanVienControll();
-            nv.setMaNhanVien(txtMaNV.getText());
-            nv.setTenNhanVien(txtTenNV.getText());
-            String layMaChucVuTheoTen = nvControll.layMaChucVuTheoTen(cbbChucVu.getSelectedItem().toString());
-            String date = sdf.format(dateChooser.getDate());
-            nv.setMaChucVu(layMaChucVuTheoTen);
-            nv.setGioiTinh(rbNam.isSelected() ? 1 : 0);
-            nv.setDiaChi(txtDiaChi.getText());
-            nv.setSoDienThoai(txtDT.getText());
-            nv.setNgaySinh(date);
-            if (nvControll.insert(nv)) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhân viên thành công !!!");
-                loadDataToTable();
-                resetText();
+            String maNV = txtMaNV.getText();
+            String maNVTable = tblNhanVien.getValueAt(row, 0).toString();
+            if (maNV.equals(maNVTable)) {
+                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Nhân Viên có mã: " + maNVTable + " đã tồn tại trong danh sách");
+                txtMaNV.setText("");
+                txtMaNV.requestFocus();
+            } else {
+                nv.setMaNhanVien(txtMaNV.getText());
+                nv.setTenNhanVien(txtTenNV.getText());
+                String layMaChucVuTheoTen = nvControll.layMaChucVuTheoTen(cbbChucVu.getSelectedItem().toString());
+                String date = sdf.format(dateChooser.getDate());
+                nv.setMaChucVu(layMaChucVuTheoTen);
+                nv.setGioiTinh(rbNam.isSelected() ? 1 : 0);
+                nv.setDiaChi(txtDiaChi.getText());
+                nv.setSoDienThoai(txtDT.getText());
+                nv.setNgaySinh(date);
+                if (nvControll.insert(nv)) {
+                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới nhân viên thành công !!!");
+                    loadDataToTable();
+                    resetText();
+                } else {
+                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh báo", "Thêm mới nhân viên thất bại !!!");
+                }
             }
         } catch (Exception e) {
-            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Nhân viên có mã : " + txtMaNV.getText() + " đã tồn tạit trong danh sách !!!");
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
             System.out.println(e.getMessage());
-            txtMaNV.setText("");
-            txtMaNV.requestFocus();
         }
-
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void btnKhongLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhongLuuActionPerformed
@@ -532,7 +540,7 @@ public class frmNhanVien extends javax.swing.JFrame {
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
-         if (MessageDialogHelper.ShowConfirmDialog(this, "Thông báo", "Bạn có muốn thoát !!!") == JOptionPane.YES_NO_OPTION) {
+        if (MessageDialogHelper.ShowConfirmDialog(this, "Thông báo", "Bạn có muốn thoát !!!") == JOptionPane.YES_NO_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_btnThoatActionPerformed
