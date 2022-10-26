@@ -122,9 +122,9 @@
                       <Component id="txtTimKiem" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="450" max="-2" attributes="0"/>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                       <Component id="btnThem" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -282,7 +282,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/HinhAnh/icons8-add-32.png"/>
+          <Image iconType="3" name="/Icon/icons8-add-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
       </Properties>
@@ -296,7 +296,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/HinhAnh/icons8-delete-32.png"/>
+          <Image iconType="3" name="/Icon/icons8-delete-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
       </Properties>
@@ -310,7 +310,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/HinhAnh/icons8-update-32.png"/>
+          <Image iconType="3" name="/Icon/icons8-update-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
       </Properties>
@@ -324,7 +324,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/HinhAnh/icons8-save-32.png"/>
+          <Image iconType="3" name="/Icon/icons8-save-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
       </Properties>
@@ -338,7 +338,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/HinhAnh/icons8-exit-32.png"/>
+          <Image iconType="3" name="/Icon/icons8-exit-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
       </Properties>
@@ -362,7 +362,7 @@
           <Font name="Tahoma" size="13" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/HinhAnh/icons8-search-32.png"/>
+          <Image iconType="3" name="/Icon/icons8-search-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
       </Properties>

@@ -129,7 +129,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblNhaCungCap);
 
         btnThem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-add-32.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-add-32.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +138,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         });
 
         btnXoa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-delete-32.png"))); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-delete-32.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         });
 
         btnSua.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-update-32.png"))); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-update-32.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +156,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         });
 
         btnLuu.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-save-32.png"))); // NOI18N
+        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-save-32.png"))); // NOI18N
         btnLuu.setText("Lưu");
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +165,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         });
 
         btnTimKiem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-search-32.png"))); // NOI18N
+        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-search-32.png"))); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +174,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         });
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-exit-32.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-exit-32.png"))); // NOI18N
         jButton6.setText("Thoát");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,32 +210,32 @@ public class frmNhaCungCap extends javax.swing.JFrame {
                                         .addComponent(jLabel5)
                                         .addGap(110, 110, 110)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnThem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                                 .addComponent(btnXoa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                                 .addComponent(btnSua)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                                 .addComponent(btnLuu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                                 .addComponent(btnTimKiem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                                 .addComponent(jButton6))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(279, 279, 279)
                         .addComponent(jLabel1)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,7 +277,7 @@ public class frmNhaCungCap extends javax.swing.JFrame {
                     .addComponent(btnLuu)
                     .addComponent(btnTimKiem)
                     .addComponent(jButton6))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -400,18 +400,42 @@ public class frmNhaCungCap extends javax.swing.JFrame {
             return;
         }
         try {
-            NhaCungCap ncc = new NhaCungCap();
-            ncc.setMaNhaCungCap(txtMaNCC.getText());
-            ncc.setTenNhaCungCap(txtTenNCC.getText());
-            ncc.setDiaChi(txtDiaChi.getText());
-            ncc.setSoDienThoai(txtSDT.getText());
-            ncc.setEmail(txtEmail.getText());
-            NhaCungCapControll nccControll = new NhaCungCapControll();
-            if (nccControll.update(ncc)) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Cập nhật thông tin nhà cung cấp thành công !!");
-                loadDataTable();
-                resetText();
+            boolean check = false;
+            String SDT = txtSDT.getText().trim();
+            String email = txtEmail.getText().trim();
+            int row = tblNhaCungCap.getRowCount();
+            for (int i = 0; i < row; i++) {
+                if (SDT.equalsIgnoreCase(tblNhaCungCap.getValueAt(i, 3).toString().trim())) {
+                    check = true;
+                    txtSDT.requestFocus();
+                    break;
+                } else if (email.equalsIgnoreCase(tblNhaCungCap.getValueAt(i, 4).toString().trim())) {
+                    check = true;
+                    txtEmail.requestFocus();
+                    break;
+                }
             }
+            if (check) {
+                MessageDialogHelper.ShowErrorDialog(this, "Thông Báo", "Thông tin khách hàng chưa được thay đổi");
+                return;
+            } else {
+                NhaCungCap ncc = new NhaCungCap();
+                ncc.setMaNhaCungCap(txtMaNCC.getText());
+                ncc.setTenNhaCungCap(txtTenNCC.getText());
+                ncc.setDiaChi(txtDiaChi.getText());
+                ncc.setSoDienThoai(txtSDT.getText());
+                ncc.setEmail(txtEmail.getText());
+                NhaCungCapControll nccControll = new NhaCungCapControll();
+                if (nccControll.update(ncc)) {
+                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Cập nhật thông tin nhà cung cấp thành công !!");
+                    loadDataTable();
+                    resetText();
+                } else {
+                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Cập nhật thông tin nhà cung cấp thành công !!");
+                    resetText();
+                }
+            }
+
         } catch (Exception e) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Không thể thay đổi thông tin nhà cung cấp !!");
             resetText();

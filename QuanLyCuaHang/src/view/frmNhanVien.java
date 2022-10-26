@@ -183,7 +183,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         }
 
         btnTimKiem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-search-32.png"))); // NOI18N
+        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-search-32.png"))); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +192,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         });
 
         btnXoa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-delete-32.png"))); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-delete-32.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +202,7 @@ public class frmNhanVien extends javax.swing.JFrame {
 
         btnSua.setBackground(new java.awt.Color(255, 255, 255));
         btnSua.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-update-32.png"))); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-update-32.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,7 +211,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         });
 
         btnLuu.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-save-32.png"))); // NOI18N
+        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-save-32.png"))); // NOI18N
         btnLuu.setText("Lưu");
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +220,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         });
 
         btnThoat.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-exit-32.png"))); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-exit-32.png"))); // NOI18N
         btnThoat.setText("Thoát");
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,7 +235,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtDiaChi);
 
         btnKhongLuu.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnKhongLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-cancel-32 (1).png"))); // NOI18N
+        btnKhongLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-cancel-32 (1).png"))); // NOI18N
         btnKhongLuu.setText("Không Lưu");
         btnKhongLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +244,7 @@ public class frmNhanVien extends javax.swing.JFrame {
         });
 
         btnThem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/icons8-add-32.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-add-32.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,26 +257,22 @@ public class frmNhanVien extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnThem)
-                        .addGap(75, 75, 75)
+                        .addGap(60, 60, 60)
                         .addComponent(btnXoa)
-                        .addGap(75, 75, 75)
+                        .addGap(60, 60, 60)
                         .addComponent(btnSua)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(btnLuu)
-                        .addGap(56, 56, 56)
+                        .addGap(60, 60, 60)
                         .addComponent(btnKhongLuu)
-                        .addGap(75, 75, 75)
+                        .addGap(60, 60, 60)
                         .addComponent(btnThoat))
                     .addComponent(jScrollPane1))
-                .addGap(15, 15, 15))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(334, 334, 334)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -305,7 +301,7 @@ public class frmNhanVien extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtDT)
@@ -315,13 +311,17 @@ public class frmNhanVien extends javax.swing.JFrame {
                     .addComponent(btnTimKiem)
                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(297, 297, 297)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -353,7 +353,7 @@ public class frmNhanVien extends javax.swing.JFrame {
                         .addComponent(btnTimKiem)
                         .addGap(20, 20, 20)
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +365,7 @@ public class frmNhanVien extends javax.swing.JFrame {
                         .addComponent(btnThoat)
                         .addComponent(btnKhongLuu)
                         .addComponent(btnLuu)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -531,26 +531,44 @@ public class frmNhanVien extends javax.swing.JFrame {
             return;
         }
         try {
-            NhanVien nv = new NhanVien();
-            NhanVienControll nhanVienControll = new NhanVienControll();
-            String maCV = nhanVienControll.layMaChucVuTheoTen(cbbChucVu.getSelectedItem().toString());
-
-            nv.setMaNhanVien(txtMaNV.getText());
-            nv.setTenNhanVien(txtTenNV.getText());
-            nv.setMaChucVu(maCV);
-            nv.setGioiTinh(rbNam.isSelected() ? 1 : 0);
-            nv.setDiaChi(txtDiaChi.getText());
-            nv.setSoDienThoai(txtDT.getText());
-
-            String date = sdf.format(dateChooser.getDate());
-            nv.setNgaySinh(date);
-            if (nhanVienControll.update(nv)) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Cập nhật thông tin nhân viên: " + txtTenNV.getText() + " thành công.");
-                loadDataToTable();
-                resetText();
-                txtTimKiem.setText("");
-            } else {
-                MessageDialogHelper.ShowErrorDialog(this, "Cảnh Báo", "Không thể cập nhật thông tin nhân viên !!!" + txtTenNV.getText());
+            boolean check = false;
+            String SDT = txtDT.getText().trim();
+            String diachi = txtDiaChi.getText().trim();
+            int row = tblNhanVien.getRowCount();
+            for (int i = 0; i < row; i++) {
+                if (diachi.equalsIgnoreCase(tblNhanVien.getValueAt(i, 4).toString().trim())) {
+                    check = true;
+                    txtDiaChi.requestFocus();
+                    break;
+                } else if (SDT.equalsIgnoreCase(tblNhanVien.getValueAt(i, 5).toString().trim())) {
+                    check = true;
+                    txtDT.requestFocus();
+                    break;
+                }
+            }
+            if(check){
+                   MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Thông tin nhân viên chưa được thay đổi");
+                   return;
+            }else{
+                NhanVien nv = new NhanVien();
+                NhanVienControll nhanVienControll = new NhanVienControll();
+                String maCV = nhanVienControll.layMaChucVuTheoTen(cbbChucVu.getSelectedItem().toString());
+                nv.setMaNhanVien(txtMaNV.getText());
+                nv.setTenNhanVien(txtTenNV.getText());
+                nv.setMaChucVu(maCV);
+                nv.setGioiTinh(rbNam.isSelected() ? 1 : 0);
+                nv.setDiaChi(txtDiaChi.getText());
+                nv.setSoDienThoai(txtDT.getText());
+                String date = sdf.format(dateChooser.getDate());
+                nv.setNgaySinh(date);
+                if (nhanVienControll.update(nv)) {
+                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Cập nhật thông tin nhân viên: " + txtTenNV.getText() + " thành công.");
+                    loadDataToTable();
+                    resetText();
+                    txtTimKiem.setText("");
+                } else {
+                    MessageDialogHelper.ShowErrorDialog(this, "Cảnh Báo", "Không thể cập nhật thông tin nhân viên !!!" + txtTenNV.getText());
+                }
             }
         } catch (Exception e) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
