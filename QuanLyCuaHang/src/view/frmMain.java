@@ -22,6 +22,7 @@ public class frmMain extends javax.swing.JFrame {
         menuNhaCungCap = new javax.swing.JMenuItem();
         menuNhanVien = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        menuNhanVien1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -37,19 +38,19 @@ public class frmMain extends javax.swing.JFrame {
             .addGap(0, 803, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Danh Mục");
+        jMenu1.setText("Quản lý");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
 
         menuHoaDon.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        menuHoaDon.setText("Quản lý hóa đơn");
+        menuHoaDon.setText("Hóa Đơn");
         jMenu1.add(menuHoaDon);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem5.setText("Quản lý phiếu nhập hàng");
+        jMenuItem5.setText("Phiếu Nhập Hàng");
         jMenu1.add(jMenuItem5);
 
         menuNhaCungCap.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
-        menuNhaCungCap.setText("Quản lý nhà cung cấp");
+        menuNhaCungCap.setText("Nhà Cung Cấp");
         menuNhaCungCap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuNhaCungCapActionPerformed(evt);
@@ -58,7 +59,7 @@ public class frmMain extends javax.swing.JFrame {
         jMenu1.add(menuNhaCungCap);
 
         menuNhanVien.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        menuNhanVien.setText("Quản lý nhân viên");
+        menuNhanVien.setText("Nhân Viên");
         menuNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuNhanVienActionPerformed(evt);
@@ -68,7 +69,17 @@ public class frmMain extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Thống kê");
+
+        menuNhanVien1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        menuNhanVien1.setText("Hóa đơn bán hàng");
+        menuNhanVien1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNhanVien1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuNhanVien1);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("jMenu3");
@@ -101,6 +112,10 @@ public class frmMain extends javax.swing.JFrame {
     private void menuNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNhanVienActionPerformed
       
     }//GEN-LAST:event_menuNhanVienActionPerformed
+
+    private void menuNhanVien1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNhanVien1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuNhanVien1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,5 +162,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuHoaDon;
     private javax.swing.JMenuItem menuNhaCungCap;
     private javax.swing.JMenuItem menuNhanVien;
+    private javax.swing.JMenuItem menuNhanVien1;
     // End of variables declaration//GEN-END:variables
 }

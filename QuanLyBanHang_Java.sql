@@ -197,7 +197,3 @@ insert into SanPham values('SP04',N'NCC01','DT03',N'Máy Tính Apple',10,1500000
 insert into SanPham values('SP05',N'NCC01','DT01',N'Máy Giặt SamSung',10,1500000,2000000,'maygiat.jpg',N'Chưa có',0)
 
 
-select *from KhachHang
-
-delete from KhachHang where MaKhachHang= 'KH10'
-

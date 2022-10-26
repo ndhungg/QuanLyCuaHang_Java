@@ -1,6 +1,7 @@
 package model;
 
 public class ChucVu {
+
     private String maChucVu, tenChucVu;
 
     public ChucVu() {
@@ -26,5 +27,5 @@ public class ChucVu {
     public void setTenChucVu(String tenChucVu) {
         this.tenChucVu = tenChucVu;
     }
-    
+
 }
