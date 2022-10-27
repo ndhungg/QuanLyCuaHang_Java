@@ -1,8 +1,6 @@
 package controll;
 
 import helper.ConnectSQL;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
 import javax.sql.rowset.serial.SerialBlob;
 import model.LoaiSanPham;
 import model.NhaCungCap;
@@ -75,13 +72,13 @@ public class SanPhamControll {
         sp.setTenSanPham(rs.getString("TenSanPham"));
         sp.setMaNhaCungCap(rs.getString("TenNhaCungCap"));
         sp.setMaLoaiSP(rs.getString("TenLoaiSP"));
-        sp.setSoLuong(rs.getFloat("SoLuong"));
+        sp.setSoLuong(rs.getInt("SoLuong"));
         sp.setDonGiaNhap(rs.getDouble("DonGiaNhap"));
         sp.setDonGiaBan(rs.getDouble("DonGiaBan"));
         sp.setHinhAnh(rs.getBytes("HinhAnh"));
 //        Blob blob = rs.getBlob("HinhAnh");
 //        if (blob != null) {
-//            sp.setHinhAnh(blob.getBytes(0, (int) blob.length()));
+//            sp.setHinhAnh(blob.getBytes(1, (int) blob.length()));
 //        }
         sp.setGhiChu(rs.getString("GhiChu"));
         return sp;
@@ -121,8 +118,8 @@ public class SanPhamControll {
 
     public String layMaNhaCC(String id) throws Exception {
         String sql = "select ncc.MaNhaCungCap"
-                + " from NhaCungCap ncc, SanPham sp"
-                + " where ncc.MaNhaCungCap = sp.MaNhaCungCap and ncc.TenNhaCungCap = ?";
+                + " from NhaCungCap ncc"
+                + " where ncc.TenNhaCungCap = ?";
         String ma = "";
         try (Connection conn = ConnectSQL.getConnection();
                 PreparedStatement pstm = conn.prepareCall(sql);) {
@@ -138,9 +135,10 @@ public class SanPhamControll {
     }
 
     public String layMaLoaiSP(String id) throws Exception {
-        String sql = "select lsp.MaLoaiSP "
-                + " from LoaiSanPham lsp, SanPham sp"
-                + " where lsp.MaLoaiSP = sp.MaLoaiSP and lsp.TenLoaiSP = ?";
+//        String sql = "select lsp.MaLoaiSP "
+//                + " from LoaiSanPham lsp, SanPham sp"
+//                + " where lsp.MaLoaiSP = sp.MaLoaiSP and lsp.TenLoaiSP = ?";
+        String sql = "Select MaLoaiSP from LoaiSanPham where TenLoaiSP = ?";
         String ma = "";
         try (Connection conn = ConnectSQL.getConnection();
                 PreparedStatement pstm = conn.prepareCall(sql);) {
@@ -156,7 +154,7 @@ public class SanPhamControll {
     }
 
     public boolean insert(SanPham sp) throws Exception {
-        String sql = " INSERT INTO [dbo].[SanPham]([MaSanPham],[MaNhaCungCap],[MaLoaiSP],[TenSanPham],[SoLuong],[DonGiaNhap],[DonGiaBan],[HinhAnh],[GhiChu],[TrangThai])"
+        String sql = " INSERT INTO dbo.SanPham(MaSanPham,MaNhaCungCap,MaLoaiSP,TenSanPham,SoLuong,DonGiaNhap,DonGiaBan,HinhAnh,GhiChu,TrangThai)"
                 + " VALUES(?,?,?,?,?,?,?,?,?,?)";
         try (Connection conn = ConnectSQL.getConnection();
                 PreparedStatement pstm = conn.prepareCall(sql);) {
@@ -164,11 +162,10 @@ public class SanPhamControll {
             pstm.setString(2, sp.getMaNhaCungCap());
             pstm.setString(3, sp.getMaLoaiSP());
             pstm.setString(4, sp.getTenSanPham());
-            pstm.setFloat(5, sp.getSoLuong());
+            pstm.setInt(5, sp.getSoLuong());
             pstm.setDouble(6, sp.getDonGiaNhap());
             pstm.setDouble(7, sp.getDonGiaBan());
-//            File input = null;
-//            BufferedImage read = ImageIO.read(input);
+
             if (sp.getHinhAnh() != null) {
                 Blob hinhanh = new SerialBlob(sp.getHinhAnh());
                 pstm.setBlob(8, hinhanh);
@@ -183,8 +180,8 @@ public class SanPhamControll {
     }
 
     public boolean update(SanPham sp) throws Exception {
-        String sql = "  UPDATE [dbo].[SanPham] SET [MaNhaCungCap] = ?,[MaLoaiSP] = ?,[TenSanPham] = ?,[SoLuong] = ?,[DonGiaNhap] = ?,[DonGiaBan] = ?,[HinhAnh] = ?,[GhiChu] = ?"
-                + " Where [MaSanPham] = ?";
+        String sql = "  UPDATE dbo.SanPham SET MaNhaCungCap = ?,MaLoaiSP = ?,TenSanPham = ?,SoLuong = ?,DonGiaNhap = ?,DonGiaBan = ?,HinhAnh = ?,GhiChu = ?"
+                + " Where MaSanPham = ?";
         try (Connection conn = ConnectSQL.getConnection();
                 PreparedStatement pstm = conn.prepareCall(sql);) {
             pstm.setString(1, sp.getMaNhaCungCap());
@@ -206,7 +203,7 @@ public class SanPhamControll {
         }
     }
 
-    public boolean delete(String id) throws Exception{
+    public boolean delete(String id) throws Exception {
         String sql = "Delete from SanPham where MaSanPham = ?";
         try (Connection conn = ConnectSQL.getConnection();
                 PreparedStatement pstm = conn.prepareCall(sql);) {

@@ -3,15 +3,14 @@ package model;
 public class SanPham {
 
     private String MaSanPham, MaNhaCungCap, MaLoaiSP, TenSanPham, GhiChu;
-    private float SoLuong;
     private double DonGiaNhap, DonGiaBan;
     private byte[] HinhAnh;
-    private int TrangThai;
+    private int TrangThai,SoLuong;
 
     public SanPham() {
     }
 
-    public SanPham(String MaSanPham, String MaNhaCungCap, String MaLoaiSP, String TenSanPham, String GhiChu, float SoLuong, double DonGiaNhap, double DonGiaBan, byte[] HinhAnh, int TrangThai) {
+    public SanPham(String MaSanPham, String MaNhaCungCap, String MaLoaiSP, String TenSanPham, String GhiChu, int SoLuong, double DonGiaNhap, double DonGiaBan, byte[] HinhAnh, int TrangThai) {
         this.MaSanPham = MaSanPham;
         this.MaNhaCungCap = MaNhaCungCap;
         this.MaLoaiSP = MaLoaiSP;
@@ -64,11 +63,11 @@ public class SanPham {
         this.GhiChu = GhiChu;
     }
 
-    public float getSoLuong() {
+    public int getSoLuong() {
         return SoLuong;
     }
 
-    public void setSoLuong(float SoLuong) {
+    public void setSoLuong(int SoLuong) {
         this.SoLuong = SoLuong;
     }
 

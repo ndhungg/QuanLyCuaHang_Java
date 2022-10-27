@@ -5,6 +5,16 @@ Use QuanLyBanHang_Java
 go
 
 
+--Câu lệnh khởi tạo bảng chức vụ 
+ Create table ChucVu
+(
+	MaChucVu nvarchar(20) not null,
+	TenChucVu nvarchar(20) not null,
+	Primary Key Clustered ([MaChucVu] ASC)
+);
+go
+
+
 --Câu lệnh khởi tạo bảng Nhân viên
  Create table NhanVien
  (
@@ -21,14 +31,7 @@ go
  );
  go
 
---Câu lệnh khởi tạo bảng chức vụ 
- Create table ChucVu
-(
-	MaChucVu nvarchar(20) not null,
-	TenChucVu nvarchar(20) not null,
-	Primary Key Clustered ([MaChucVu] ASC)
-);
-go
+
 
 --Câu lệnh khởi tạo bảng Khách Hàng
  Create table KhachHang
@@ -44,28 +47,7 @@ go
  go
 
 
---Câu lệnh khởi tạo bảng Sản Phẩm
- Create table SanPham
- (
-	MaSanPham nvarchar(20) not null,
-	MaNhaCungCap nvarchar(20) not null,
-	MaLoaiSP nvarchar(20) not null,
-	TenSanPham nvarchar(50) not null,
-	SoLuong float(53) not null,
-	DonGiaNhap float(53) not null,
-	DonGiaBan float(53) not null,
-	HinhAnh nvarchar(200) not null,
-	GhiChu nvarchar(250),
-	TrangThai bit default 0, -- 0- chưa xóa , 1- đã xóa 
-	Primary Key Clustered (MaSanPham ASC),
-	Foreign Key(MaNhaCungCap) References NhaCungCap(MaNhaCungCap),
-	Foreign Key(MaLoaiSP) References LoaiSanPham(MaLoaiSP)
- );
- go
-
-
-
---Câu lệnh khởi tạo bảng Nhà Cung Cấp
+ --Câu lệnh khởi tạo bảng Nhà Cung Cấp
  Create table NhaCungCap
  (
 	MaNhaCungCap nvarchar(20) not null,
@@ -78,6 +60,7 @@ go
  );
  go
 
+ 
  --Câu lệnh khởi tạo bảng Loại Sản Phẩm
  Create table LoaiSanPham
  (
@@ -87,6 +70,27 @@ go
 	Primary Key Clustered (MaLoaiSP ASC)
  );
  go
+
+
+--Câu lệnh khởi tạo bảng Sản Phẩm
+ Create table SanPham
+ (
+	MaSanPham nvarchar(20) not null,
+	MaNhaCungCap nvarchar(20) not null,
+	MaLoaiSP nvarchar(20) not null,
+	TenSanPham nvarchar(50) not null,
+	SoLuong int not null,
+	DonGiaNhap float(53) not null,
+	DonGiaBan float(53) not null,
+	HinhAnh image,
+	GhiChu nvarchar(250),
+	TrangThai bit default 0, -- 0- chưa xóa , 1- đã xóa 
+	Primary Key Clustered (MaSanPham ASC),
+	Foreign Key(MaNhaCungCap) References NhaCungCap(MaNhaCungCap),
+	Foreign Key(MaLoaiSP) References LoaiSanPham(MaLoaiSP)
+ );
+ go
+
 
  --Câu lệnh khởi tạo bảng Hóa Đơn Bán Hàng
  Create table HoaDonBan
@@ -192,10 +196,11 @@ insert into LoaiSanPham values('DT03',N'Máy Tính',0)
 insert into LoaiSanPham values('DT02',N'TV',0)
 
 --Sản Phẩm
-insert into SanPham values('SP01',N'NCC01','DT01',N'Máy Giặt ToSiBa',10,1500000,2000000,'maygiat.jpg',N'Chưa có',0)
-insert into SanPham values('SP02',N'NCC02','DT03',N'Máy Tính Dell',10,1500000,2300000,'maytinh.jpg',N'Chưa có',0)
-insert into SanPham values('SP03',N'NCC03','DT02',N'TiVi Sony',10,1500000,2500000,'tivi.jpg',N'Chưa có',0)
-insert into SanPham values('SP04',N'NCC01','DT03',N'Máy Tính Apple',10,1500000,2000000,'maytinh.jpg',N'Chưa có',0)
-insert into SanPham values('SP05',N'NCC01','DT01',N'Máy Giặt SamSung',10,1500000,2000000,'maygiat.jpg',N'Chưa có',0)
-
+/*
+insert into SanPham values('SP01',N'NCC01','DT01',N'Máy Giặt ToSiBa',10,1500000,2000000,null,null,0)
+insert into SanPham values('SP02',N'NCC02','DT03',N'Máy Tính Dell',10,1500000,2300000,null,null,0)
+insert into SanPham values('SP03',N'NCC03','DT02',N'TiVi Sony',10,1500000,2500000,null,null,0)
+insert into SanPham values('SP04',N'NCC01','DT03',N'Máy Tính Apple',10,1500000,2000000,null,null,0)
+insert into SanPham values('SP05',N'NCC01','DT01',N'Máy Giặt SamSung',10,1500000,2000000,null,null,0)
+*/
 
