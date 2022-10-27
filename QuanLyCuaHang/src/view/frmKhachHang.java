@@ -1,4 +1,4 @@
-
+package view;
 import controll.KhachHangControll;
 import helper.DataValidator;
 import helper.MessageDialogHelper;

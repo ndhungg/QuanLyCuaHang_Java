@@ -1,4 +1,4 @@
-
+package view;
 import controll.NhanVienControll;
 import helper.DataValidator;
 import helper.MessageDialogHelper;

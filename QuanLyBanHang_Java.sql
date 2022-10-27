@@ -55,13 +55,15 @@ go
 	DonGiaNhap float(53) not null,
 	DonGiaBan float(53) not null,
 	HinhAnh nvarchar(200) not null,
-	GhiChu nvarchar(200) not null,
+	GhiChu nvarchar(250),
 	TrangThai bit default 0, -- 0- chưa xóa , 1- đã xóa 
 	Primary Key Clustered (MaSanPham ASC),
 	Foreign Key(MaNhaCungCap) References NhaCungCap(MaNhaCungCap),
 	Foreign Key(MaLoaiSP) References LoaiSanPham(MaLoaiSP)
  );
  go
+
+
 
 --Câu lệnh khởi tạo bảng Nhà Cung Cấp
  Create table NhaCungCap
