@@ -7,7 +7,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import model.KhachHang;
 import model.NhaCungCap;
 
 public class frmNhaCungCap extends javax.swing.JFrame {
@@ -190,52 +189,51 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtMaNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                    .addComponent(txtTenNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtMaNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                                            .addComponent(txtTenNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(110, 110, 110)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnThem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                                .addComponent(btnXoa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                                .addComponent(btnSua)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                                .addComponent(btnLuu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                                .addComponent(btnTimKiem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                                .addComponent(jButton6))))
+                                .addComponent(jLabel5)
+                                .addGap(110, 110, 110)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(279, 279, 279)
-                        .addComponent(jLabel1)))
+                        .addComponent(btnThem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addComponent(btnXoa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addComponent(btnSua)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addComponent(btnLuu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addComponent(btnTimKiem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addComponent(jButton6)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(351, 351, 351))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,10 +315,10 @@ public class frmNhaCungCap extends javax.swing.JFrame {
         StringBuffer sb = new StringBuffer();
         DataValidator.ValidatorEmpty(txtMaNCC, sb, "Bạn chưa nhập mã nhà cung cấp");
         DataValidator.ValidatorEmpty(txtTenNCC, sb, "Bạn chưa nhập tên nhà cung cấp");
-        DataValidator.ValidatorEmpty(txtDiaChi, sb, "Bạn chưa nhập địa chỉ");
+        DataValidator.ValidatorEmptyJTextArea(txtDiaChi, sb, "Bạn chưa nhập địa chỉ");
         DataValidator.ValidatorEmpty(txtSDT, sb, "Bạn chưa nhập số điện thoại ");
-        DataValidator.ValidatorNumberPhone(txtSDT, sb, "Số điện thoại chưa đúng (10 <= SĐT <=11)");
-        DataValidator.ValidatorEmpty(txtEmail, sb, "Bạn chưa nhập email nhà cung cấp");
+        DataValidator.CheckNumberPhone(txtSDT, sb);
+        DataValidator.checkEmail(txtEmail, sb);
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
             return;
@@ -385,15 +383,14 @@ public class frmNhaCungCap extends javax.swing.JFrame {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         StringBuffer sb = new StringBuffer();
-        DataValidator.ValidatorEmpty(txtMaNCC, sb, "Mã nhà cung cấp không được để trống !!!");
-        DataValidator.ValidatorEmpty(txtTenNCC, sb, "Tên nhà cung cấp không được để trống !!!");
-        DataValidator.ValidatorEmpty(txtDiaChi, sb, "Địa chỉ không được để trống !!!");
-        DataValidator.ValidatorEmpty(txtSDT, sb, "Điện thoại không được để trống !!!");
-        DataValidator.ValidatorNumberPhone(txtSDT, sb, "Số điện thoại (10 <= SĐT <= 11)");
-        DataValidator.ValidatorEmpty(txtEmail, sb, "Email không được để trống !!!");
+        DataValidator.ValidatorEmpty(txtMaNCC, sb, "Bạn chưa nhập mã nhà cung cấp");
+        DataValidator.ValidatorEmpty(txtTenNCC, sb, "Bạn chưa nhập tên nhà cung cấp");
+        DataValidator.ValidatorEmptyJTextArea(txtDiaChi, sb, "Bạn chưa nhập địa chỉ");
+        DataValidator.ValidatorEmpty(txtSDT, sb, "Bạn chưa nhập số điện thoại ");
+        DataValidator.CheckNumberPhone(txtSDT, sb);
+        DataValidator.checkEmail(txtEmail, sb);
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
-            resetText();
             return;
         }
         if (MessageDialogHelper.ShowConfirmDialog(this, "Thông báo", "Bạn có muốn thay đổi thông tin nhà cung cấp !!") == JOptionPane.NO_OPTION) {
@@ -407,11 +404,9 @@ public class frmNhaCungCap extends javax.swing.JFrame {
             for (int i = 0; i < row; i++) {
                 if (SDT.equalsIgnoreCase(tblNhaCungCap.getValueAt(i, 3).toString().trim())) {
                     check = true;
-                    txtSDT.requestFocus();
                     break;
                 } else if (email.equalsIgnoreCase(tblNhaCungCap.getValueAt(i, 4).toString().trim())) {
                     check = true;
-                    txtEmail.requestFocus();
                     break;
                 }
             }
@@ -443,7 +438,6 @@ public class frmNhaCungCap extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
         if (MessageDialogHelper.ShowConfirmDialog(null, "Thông báo", "Bạn có muốn thoát !!!") == JOptionPane.YES_NO_OPTION) {
             System.exit(0);
         }

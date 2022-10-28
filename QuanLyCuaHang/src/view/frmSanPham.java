@@ -1,11 +1,13 @@
 package view;
 
 import controll.SanPhamControll;
+import helper.DataValidator;
 import helper.ImageHelper;
 import helper.MessageDialogHelper;
 import java.awt.Image;
 import java.io.File;
-import java.util.List;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -16,10 +18,12 @@ import javax.swing.table.TableColumnModel;
 import model.LoaiSanPham;
 import model.NhaCungCap;
 import model.SanPham;
+import java.util.List;
 
 public class frmSanPham extends javax.swing.JFrame {
 
     private DefaultTableModel tbModel;
+    private DecimalFormat x = new DecimalFormat("###,###,###");
     private byte[] personalImage;
 
     public frmSanPham() {
@@ -56,8 +60,8 @@ public class frmSanPham extends javax.swing.JFrame {
                 item.getMaNhaCungCap(),
                 item.getMaLoaiSP(),
                 item.getSoLuong(),
-                item.getDonGiaNhap(),
-                item.getDonGiaBan(),
+                x.format(item.getDonGiaNhap()),
+                x.format(item.getDonGiaBan()),
                 item.getGhiChu()
             });
         });
@@ -144,6 +148,7 @@ public class frmSanPham extends javax.swing.JFrame {
         btnLuu = new javax.swing.JButton();
         btnKhongLuu = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         txtTimKiem = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
@@ -291,6 +296,15 @@ public class frmSanPham extends javax.swing.JFrame {
             }
         });
 
+        btnThoat.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-exit-32.png"))); // NOI18N
+        btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -298,16 +312,18 @@ public class frmSanPham extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(btnThem)
-                .addGap(110, 110, 110)
+                .addGap(60, 60, 60)
                 .addComponent(btnXoa)
-                .addGap(110, 110, 110)
+                .addGap(60, 60, 60)
                 .addComponent(btnSua)
-                .addGap(110, 110, 110)
+                .addGap(60, 60, 60)
                 .addComponent(btnLuu)
-                .addGap(110, 110, 110)
+                .addGap(60, 60, 60)
                 .addComponent(btnKhongLuu)
-                .addGap(110, 110, 110)
+                .addGap(60, 60, 60)
                 .addComponent(btnTimKiem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(btnThoat)
                 .addGap(30, 30, 30))
         );
         jPanel3Layout.setVerticalGroup(
@@ -320,7 +336,8 @@ public class frmSanPham extends javax.swing.JFrame {
                     .addComponent(btnTimKiem)
                     .addComponent(btnSua)
                     .addComponent(btnXoa)
-                    .addComponent(btnThem))
+                    .addComponent(btnThem)
+                    .addComponent(btnThoat))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -328,13 +345,13 @@ public class frmSanPham extends javax.swing.JFrame {
 
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -345,7 +362,7 @@ public class frmSanPham extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblSanPham);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel6.setText("Đơn Giá Nhập:");
+        jLabel6.setText("Đơn Giá Mua:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel7.setText("Đơn Giá Bán:");
@@ -498,48 +515,83 @@ public class frmSanPham extends javax.swing.JFrame {
 
     private void btnKhongLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhongLuuActionPerformed
         ressetText();
+        personalImage = null;
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Icon/icons8-favorite-cart-100.png"));
+        labHinhAnh.setIcon(icon);
         loadDataToTable();
     }//GEN-LAST:event_btnKhongLuuActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        StringBuffer sb = new StringBuffer();
+        DataValidator.ValidatorEmpty(txtMaSP, sb, "Mã sản phẩm không được để trống !!!");
+        DataValidator.ValidatorEmpty(txtTenSP, sb, "Tên sản phẩm không được để trống !!!");
+        DataValidator.checkAmount(txtSL, sb);
+        DataValidator.checkImportPrice(txtDGNhap, sb);
+        DataValidator.checkPrice(txtDGBan, sb);
+        if (sb.length() > 0) {
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
+            return;
+        }
         try {
-            SanPhamControll spControll = new SanPhamControll();
+            boolean checkID = false;
             SanPham sp = new SanPham();
-
-            String maNCC = spControll.layMaNhaCC(cbbNCC.getSelectedItem().toString());
-            String maLoaiSP = spControll.layMaLoaiSP(cbbLoaiSP.getSelectedItem().toString());
-            int sl = Integer.parseInt(txtSL.getText());
-            double giaNhap = Double.parseDouble(txtDGNhap.getText());
-            double giaBan = Double.parseDouble(txtDGBan.getText());
-
-            sp.setMaSanPham(txtMaSP.getText());
-            sp.setMaNhaCungCap(maNCC);
-            sp.setMaLoaiSP(maLoaiSP);
-            sp.setTenSanPham(txtTenSP.getText());
-            sp.setSoLuong(sl);
-            sp.setDonGiaNhap(giaNhap);
-            sp.setDonGiaBan(giaBan);
-            sp.setHinhAnh(personalImage);
-            sp.setGhiChu(txtGhiChu.getText());
-
-            if (spControll.insert(sp)) {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới thành công !!!");
-                loadDataToTable();
-                ressetText();
+            SanPhamControll spControll = new SanPhamControll();
+            int row = tblSanPham.getRowCount();
+            String ma = txtMaSP.getText().trim();
+            for (int i = 0; i < row; i++) {
+                if (tblSanPham.getValueAt(i, 0).equals(ma)) {
+                    checkID = true;
+                    break;
+                }
+            }
+            if (checkID) {
+                MessageDialogHelper.ShowErrorDialog(this, "Thông báo", "Mã sản phẩm có mã: " + ma + " đã tồn tại trong danh sách!!!");
+                txtMaSP.requestFocus();
             } else {
-                MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới thành công !!!");
-                ressetText();
+                String maNCC = spControll.layMaNhaCC(cbbNCC.getSelectedItem().toString());
+                String maLoaiSP = spControll.layMaLoaiSP(cbbLoaiSP.getSelectedItem().toString());
+                int sl = Integer.parseInt(txtSL.getText());
+                double giaNhap = Double.parseDouble(txtDGNhap.getText());
+                double giaBan = Double.parseDouble(txtDGBan.getText());
+                sp.setMaSanPham(txtMaSP.getText());
+                sp.setMaNhaCungCap(maNCC);
+                sp.setMaLoaiSP(maLoaiSP);
+                sp.setTenSanPham(txtTenSP.getText());
+                sp.setSoLuong(sl);
+                sp.setDonGiaNhap(giaNhap);
+                sp.setDonGiaBan(giaBan);
+                sp.setHinhAnh(personalImage);
+                sp.setGhiChu(txtGhiChu.getText());
+
+                if (spControll.insert(sp)) {
+                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới thành công !!!");
+                    loadDataToTable();
+                    ressetText();
+                } else {
+                    MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Thêm mới thành công !!!");
+                    ressetText();
+                }
             }
         } catch (Exception e) {
-            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
-            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        StringBuffer sb = new StringBuffer();
+        DataValidator.ValidatorEmpty(txtMaSP, sb, "Mã sản phẩm không được để trống !!!");
+        DataValidator.ValidatorEmpty(txtTenSP, sb, "Tên sản phẩm không được để trống !!!");
+        DataValidator.checkAmount(txtSL, sb);
+        DataValidator.checkImportPrice(txtDGNhap, sb);
+        DataValidator.checkPrice(txtDGBan, sb);
+        if (sb.length() > 0) {
+            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
+            return;
+        }
+
         if (MessageDialogHelper.ShowConfirmDialog(this, "Hỏi", "Bạn có muốn cập nhật thông tin của sản phẩm") == JOptionPane.NO_OPTION) {
             return;
         }
+
         try {
             SanPhamControll spControll = new SanPhamControll();
             SanPham sp = new SanPham();
@@ -569,10 +621,7 @@ public class frmSanPham extends javax.swing.JFrame {
                 ressetText();
             }
         } catch (Exception e) {
-            MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
         }
-
-
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -595,6 +644,7 @@ public class frmSanPham extends javax.swing.JFrame {
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
         int row = tblSanPham.getSelectedRow();
+
         if (row >= 0) {
             try {
                 String id = tblSanPham.getValueAt(row, 0).toString();
@@ -609,7 +659,7 @@ public class frmSanPham extends javax.swing.JFrame {
                     txtDGNhap.setText(String.valueOf(sp.getDonGiaNhap()));
                     txtDGBan.setText(String.valueOf(sp.getDonGiaBan()));
                     if (sp.getHinhAnh() != null) {
-                        Image img = ImageHelper.createImageFromByteArray(sp.getHinhAnh(), ".jpg");
+                        Image img = ImageHelper.createImageFromByteArray(sp.getHinhAnh(), "jpg");
                         labHinhAnh.setIcon(new ImageIcon(img));
                         personalImage = sp.getHinhAnh();
                     } else {
@@ -649,12 +699,11 @@ public class frmSanPham extends javax.swing.JFrame {
                 MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
             }
         } else {
-            MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Vui lòng chọn chức vụ bạn muốn xóa!!!");
+            MessageDialogHelper.ShowMessageDialog(this, "Thông báo", "Vui lòng chọn sản phẩm bạn muốn xóa!!!");
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnHinhAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHinhAnhActionPerformed
-        // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setFileFilter(new FileFilter() {
             @Override
@@ -682,12 +731,18 @@ public class frmSanPham extends javax.swing.JFrame {
             ImageIcon resizeIcon = new ImageIcon(img);
             labHinhAnh.setIcon(resizeIcon);
             personalImage = ImageHelper.toByteArray(img, "jpg");
-        } catch (Exception e) {
+        } catch (IOException e) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", e.getMessage());
         }
 
 
     }//GEN-LAST:event_btnHinhAnhActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        if (MessageDialogHelper.ShowConfirmDialog(this, "Thông báo", "Bạn có muốn thoát !!!") == JOptionPane.YES_NO_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -727,6 +782,7 @@ public class frmSanPham extends javax.swing.JFrame {
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbbLoaiSP;

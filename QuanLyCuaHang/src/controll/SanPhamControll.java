@@ -75,11 +75,11 @@ public class SanPhamControll {
         sp.setSoLuong(rs.getInt("SoLuong"));
         sp.setDonGiaNhap(rs.getDouble("DonGiaNhap"));
         sp.setDonGiaBan(rs.getDouble("DonGiaBan"));
-        sp.setHinhAnh(rs.getBytes("HinhAnh"));
-//        Blob blob = rs.getBlob("HinhAnh");
-//        if (blob != null) {
-//            sp.setHinhAnh(blob.getBytes(1, (int) blob.length()));
-//        }
+        //sp.setHinhAnh(rs.getBytes("HinhAnh"));
+        Blob blob = rs.getBlob("HinhAnh");
+        if (blob != null) {
+            sp.setHinhAnh(blob.getBytes(1, (int) blob.length()));
+        }
         sp.setGhiChu(rs.getString("GhiChu"));
         return sp;
     }
@@ -135,9 +135,6 @@ public class SanPhamControll {
     }
 
     public String layMaLoaiSP(String id) throws Exception {
-//        String sql = "select lsp.MaLoaiSP "
-//                + " from LoaiSanPham lsp, SanPham sp"
-//                + " where lsp.MaLoaiSP = sp.MaLoaiSP and lsp.TenLoaiSP = ?";
         String sql = "Select MaLoaiSP from LoaiSanPham where TenLoaiSP = ?";
         String ma = "";
         try (Connection conn = ConnectSQL.getConnection();

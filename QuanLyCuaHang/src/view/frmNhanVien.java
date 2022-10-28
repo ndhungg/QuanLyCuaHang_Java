@@ -1,4 +1,5 @@
 package view;
+
 import controll.NhanVienControll;
 import helper.DataValidator;
 import helper.MessageDialogHelper;
@@ -404,11 +405,10 @@ public class frmNhanVien extends javax.swing.JFrame {
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         StringBuffer sb = new StringBuffer();
-        DataValidator.ValidatorEmpty(txtMaNV, sb, "Mã nhân viên không được để trống !!!!");
-        DataValidator.ValidatorEmpty(txtTenNV, sb, "Tên nhân viên không được để trống !!!!");
-        DataValidator.ValidatorEmpty(txtDiaChi, sb, "Địa chỉ nhân viên không được để trống !!!!");
-        DataValidator.ValidatorEmpty(txtDT, sb, "Điện thoại nhân viên không được để trống !!!!");
-
+        DataValidator.ValidatorEmpty(txtMaNV, sb, "Mã nhân viên không được để trống !!!");
+        DataValidator.ValidatorEmpty(txtTenNV, sb, "Tên nhân viên không được để trống !!!");
+        DataValidator.ValidatorEmptyJTextArea(txtDiaChi, sb, "Địa chỉ nhân viên không được để trống !!!");
+        DataValidator.CheckNumberPhone(txtDT, sb);
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
         }
@@ -517,9 +517,8 @@ public class frmNhanVien extends javax.swing.JFrame {
         StringBuffer sb = new StringBuffer();
         DataValidator.ValidatorEmpty(txtMaNV, sb, "Mã nhân viên không được để trống !!!");
         DataValidator.ValidatorEmpty(txtTenNV, sb, "Tên nhân viên không được để trống !!!");
-        DataValidator.ValidatorEmpty(txtDiaChi, sb, "Địa chỉ nhân viên không được để trống !!!");
-        DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại nhân viên không được để trống !!!");
-        DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại chưa đúng, vui lòng kiểm tra lại (10 <= SĐT <= 11)");
+        DataValidator.ValidatorEmptyJTextArea(txtDiaChi, sb, "Địa chỉ nhân viên không được để trống !!!");
+        DataValidator.CheckNumberPhone(txtDT, sb);
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
             txtMaNV.requestFocus();
@@ -538,18 +537,16 @@ public class frmNhanVien extends javax.swing.JFrame {
             for (int i = 0; i < row; i++) {
                 if (diachi.equalsIgnoreCase(tblNhanVien.getValueAt(i, 4).toString().trim())) {
                     check = true;
-                    txtDiaChi.requestFocus();
                     break;
                 } else if (SDT.equalsIgnoreCase(tblNhanVien.getValueAt(i, 5).toString().trim())) {
                     check = true;
-                    txtDT.requestFocus();
                     break;
                 }
             }
-            if(check){
-                   MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Thông tin nhân viên chưa được thay đổi");
-                   return;
-            }else{
+            if (check) {
+                MessageDialogHelper.ShowErrorDialog(this, "Lỗi", "Thông tin nhân viên chưa được thay đổi");
+                return;
+            } else {
                 NhanVien nv = new NhanVien();
                 NhanVienControll nhanVienControll = new NhanVienControll();
                 String maCV = nhanVienControll.layMaChucVuTheoTen(cbbChucVu.getSelectedItem().toString());
@@ -576,7 +573,6 @@ public class frmNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        // TODO add your handling code here:
         if (MessageDialogHelper.ShowConfirmDialog(this, "Thông báo", "Bạn có muốn thoát !!!") == JOptionPane.YES_NO_OPTION) {
             System.exit(0);
         }

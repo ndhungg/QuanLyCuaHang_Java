@@ -1,4 +1,5 @@
 package view;
+
 import controll.KhachHangControll;
 import helper.DataValidator;
 import helper.MessageDialogHelper;
@@ -306,8 +307,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         DataValidator.ValidatorEmpty(txtMaKH, sb, "Mã khách hàng không được để trống !!!");
         DataValidator.ValidatorEmpty(txtTenKH, sb, "Tên khách hàng không được để trống !!!");
         DataValidator.ValidatorEmpty(txtDiaChi, sb, "Địa chỉ khách hàng không được để trống !!!");
-        DataValidator.ValidatorEmpty(txtDT, sb, "Số điện thoại khách hàng không được để trống !!!");
-        DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại chưa đúng, vui lòng kiểm tra lại (10 <= SĐT <= 11)");
+        DataValidator.CheckNumberPhone(txtDT, sb);
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
             return;
@@ -354,8 +354,7 @@ public class frmKhachHang extends javax.swing.JFrame {
         DataValidator.ValidatorEmpty(txtMaKH, sb, "Mã khách hàng không được để trống !!!");
         DataValidator.ValidatorEmpty(txtTenKH, sb, "Tên khách hàng không được để trống !!!");
         DataValidator.ValidatorEmpty(txtDiaChi, sb, "Địa chỉ khách hàng không được để trống !!!");
-        DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại khách hàng không được để trống !!!");
-        DataValidator.ValidatorNumberPhone(txtDT, sb, "Số điện thoại chưa đúng, vui lòng kiểm tra lại (10 <= SĐT <= 11)");
+        DataValidator.CheckNumberPhone(txtDT, sb);
         if (sb.length() > 0) {
             MessageDialogHelper.ShowErrorDialog(this, "Lỗi", sb.toString());
             return;
