@@ -79,9 +79,6 @@ go
 	MaNhaCungCap nvarchar(20) not null,
 	MaLoaiSP nvarchar(20) not null,
 	TenSanPham nvarchar(50) not null,
-	SoLuong int not null,
-	DonGiaNhap float(53) not null,
-	DonGiaBan float(53) not null,
 	HinhAnh image,
 	GhiChu nvarchar(250),
 	TrangThai bit default 0, -- 0- chưa xóa , 1- đã xóa 
@@ -100,6 +97,7 @@ go
 	MaKhachHang nvarchar(20) not null,
 	NgayBan datetime not null,
 	TongTien float(53) not null,
+	GhiChu nvarchar(200),
 	TrangThai bit default 0, -- 0- chưa xóa , 1- đã xóa 
 	Primary Key Clustered (MaHDBan ASC),
 	Foreign Key(MaNhanVien) References NhanVien(MaNhanVien),
@@ -127,11 +125,16 @@ go
 	MaPNHang nvarchar(20) not null,
 	MaNhanVien nvarchar(20) not null,
 	MaSanPham nvarchar(20) not null,
+	NgayNhap date not null,
+	SoLuong int not null,
+	DonGiaNhap float(53) not null,
+	DonGiaBan float(53) not null,
 	GiamGia float(53) not null,
 	TongTien float(53) not null,
+	GhiChu nvarchar(200),
 	TrangThai bit default 0, -- 0- chưa xóa , 1- đã xóa 
 	Primary Key Clustered ([MaPNHang] ASC, [MaSanPham] ASC),
-	Foreign Key(MaNhanVien) References NhanVien(MaNhanVien)
+	Foreign Key(MaNhanVien) References NhanVien(MaNhanVien),
  );
  go
 
@@ -141,7 +144,6 @@ set dateformat dmy
 
 -- Xóa 1 table trong sql
 -- Drop table (Tên bảng cần xóa)
-
 -- Thay đổi dữ liệu cho cột
 -- Alter table <tên bảng>  Alter column <tên cột> <kiểu dữ liệu mới>;
 -- sp_rename 'ten_bang.ten_cot_cu', 'ten_cot_moi', 'COLUMN': Đổi tên cột chứa dữ liệu bên trong bảng
@@ -165,18 +167,15 @@ insert into NhanVien values('NV01','TN',N'Dương Hà Nhi',N'TP.HCM','0374838189
 insert into NhanVien values('NV03','TK',N'Dư Văn Thảo',N'TP Hà Nội','0374836612','11-11-2001',1,0)
 insert into NhanVien values('NV02','BV',N'Dương Minh Chiến',N'TP Hà Nam','0374838812','05-10-2001',1,0)
 
---Phiếu Nhập Hàng
-insert into PhieuNhapHang values('PNH01','NV01','SP01',10000,123456,0)
-insert into PhieuNhapHang values('PNH02','NV01','SP02',20000,103456,0)
-insert into PhieuNhapHang values('PNH03','NV03','SP03',30000,113456,0)
-insert into PhieuNhapHang values('PNH04','NV03','SP04',40000,153456,0)
-
+drop table HoaDonBan
 --Hóa Đơn Bán
-insert into HoaDonBan values('HDB01','NV01','KH01','12-10-2022',123456,0)
-insert into HoaDonBan values('HDB02','NV03','KH01','12-10-2022',123456,0)
-insert into HoaDonBan values('HDB03','NV02','KH01','26-11-2022',123456,0)
-insert into HoaDonBan values('HDB04','NV02','KH01','05-08-2022',123456,0)
-insert into HoaDonBan values('HDB05','NV01','KH01','04-10-2022',123456,0)
+insert into HoaDonBan values('HDB01','NV01','KH01','12-10-2022',123456,null,0)
+insert into HoaDonBan values('HDB02','NV03','KH01','12-10-2022',123456,null,0)
+insert into HoaDonBan values('HDB03','NV02','KH01','26-11-2022',123456,null,0)
+insert into HoaDonBan values('HDB04','NV02','KH01','05-08-2022',123456,null,0)
+insert into HoaDonBan values('HDB05','NV01','KH01','04-10-2022',123456,null,0)
+
+drop table CTHoaDonBan
 
 --Chi Tiết Hóa Đơn Bán
 insert into CTHoaDonBan values('HDB01','SP01',10,1000,500,50000,0)
@@ -194,6 +193,7 @@ insert into NhaCungCap values('NCC03',N'Hùng Thủy',N'TP.HCM','0123456759','hu
 insert into LoaiSanPham values('DT01',N'Máy Giặt',0)
 insert into LoaiSanPham values('DT03',N'Máy Tính',0)
 insert into LoaiSanPham values('DT02',N'TV',0)
+insert into LoaiSanPham values('NN01',N'Nước Ngọt',0)
 
 --Sản Phẩm
 /*
@@ -203,4 +203,20 @@ insert into SanPham values('SP03',N'NCC03','DT02',N'TiVi Sony',10,1500000,250000
 insert into SanPham values('SP04',N'NCC01','DT03',N'Máy Tính Apple',10,1500000,2000000,null,null,0)
 insert into SanPham values('SP05',N'NCC01','DT01',N'Máy Giặt SamSung',10,1500000,2000000,null,null,0)
 */
+
+-- xóa đơn đơn giá mua, số lượng --> bên bảng sản phẩm
+-- thêm các trường mới vào bảng phiếu nhập hàng đó là --> số lượng sản phẩm, đơn giá mua, ghi chú, ngày nhập hàng
+
+--chức năng xóa:, xóa dữ liệu bên bảng sản phẩm trc , rồi xóa dữ liệu bên bảng phiếu nhập hàng
+
+
+select *from PhieuNhapHang
+select *from SanPham
+select *from HoaDonBan
+select *from CTHoaDonBan
+
+DELETE FROM [dbo].[PhieuNhapHang]
+      WHERE MaPNHang = 'PNH04' and MaSanPham = 'SP04'
+GO
+
 

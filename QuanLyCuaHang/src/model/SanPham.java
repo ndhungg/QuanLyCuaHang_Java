@@ -3,22 +3,18 @@ package model;
 public class SanPham {
 
     private String MaSanPham, MaNhaCungCap, MaLoaiSP, TenSanPham, GhiChu;
-    private double DonGiaNhap, DonGiaBan;
     private byte[] HinhAnh;
-    private int TrangThai,SoLuong;
+    private int TrangThai;
 
     public SanPham() {
     }
 
-    public SanPham(String MaSanPham, String MaNhaCungCap, String MaLoaiSP, String TenSanPham, String GhiChu, int SoLuong, double DonGiaNhap, double DonGiaBan, byte[] HinhAnh, int TrangThai) {
+    public SanPham(String MaSanPham, String MaNhaCungCap, String MaLoaiSP, String TenSanPham, String GhiChu, byte[] HinhAnh, int TrangThai) {
         this.MaSanPham = MaSanPham;
         this.MaNhaCungCap = MaNhaCungCap;
         this.MaLoaiSP = MaLoaiSP;
         this.TenSanPham = TenSanPham;
         this.GhiChu = GhiChu;
-        this.SoLuong = SoLuong;
-        this.DonGiaNhap = DonGiaNhap;
-        this.DonGiaBan = DonGiaBan;
         this.HinhAnh = HinhAnh;
         this.TrangThai = TrangThai;
     }
@@ -63,30 +59,6 @@ public class SanPham {
         this.GhiChu = GhiChu;
     }
 
-    public int getSoLuong() {
-        return SoLuong;
-    }
-
-    public void setSoLuong(int SoLuong) {
-        this.SoLuong = SoLuong;
-    }
-
-    public double getDonGiaNhap() {
-        return DonGiaNhap;
-    }
-
-    public void setDonGiaNhap(double DonGiaNhap) {
-        this.DonGiaNhap = DonGiaNhap;
-    }
-
-    public double getDonGiaBan() {
-        return DonGiaBan;
-    }
-
-    public void setDonGiaBan(double DonGiaBan) {
-        this.DonGiaBan = DonGiaBan;
-    }
-
     public byte[] getHinhAnh() {
         return HinhAnh;
     }
@@ -101,10 +73,6 @@ public class SanPham {
 
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
-    }
-
-    public void setDonGiaBan(String giaban) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

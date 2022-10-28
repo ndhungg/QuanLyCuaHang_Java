@@ -16,7 +16,7 @@ import model.SanPham;
 public class SanPhamControll {
 
     public List<SanPham> findAll() throws Exception {
-        String sql = "select sp.MaSanPham,sp.TenSanPham, ncc.TenNhaCungCap, lsp.TenLoaiSP,sp.SoLuong,sp.DonGiaNhap,sp.DonGiaBan,sp.HinhAnh,sp.GhiChu"
+        String sql = "select sp.MaSanPham,sp.TenSanPham, ncc.TenNhaCungCap, lsp.TenLoaiSP,sp.HinhAnh,sp.GhiChu"
                 + " from SanPham sp, NhaCungCap ncc, LoaiSanPham lsp"
                 + " where sp.MaNhaCungCap = ncc.MaNhaCungCap and sp.MaLoaiSP = lsp.MaLoaiSP";
         try (Connection conn = ConnectSQL.getConnection();
@@ -33,7 +33,7 @@ public class SanPhamControll {
     }
 
     public SanPham findID(String id) throws Exception {
-        String sql = "select sp.MaSanPham,sp.TenSanPham, ncc.TenNhaCungCap, lsp.TenLoaiSP,sp.SoLuong,sp.DonGiaNhap,sp.DonGiaBan,sp.HinhAnh,sp.GhiChu"
+        String sql = "select sp.MaSanPham,sp.TenSanPham, ncc.TenNhaCungCap, lsp.TenLoaiSP,sp.HinhAnh,sp.GhiChu"
                 + " from SanPham sp, NhaCungCap ncc, LoaiSanPham lsp"
                 + " where sp.MaNhaCungCap = ncc.MaNhaCungCap and sp.MaLoaiSP = lsp.MaLoaiSP and sp.MaSanPham = ?";
         try (Connection conn = ConnectSQL.getConnection();
@@ -50,7 +50,7 @@ public class SanPhamControll {
     }
 
     public List<SanPham> findKH_ByName(String ten) throws Exception {
-        String sql = "select sp.MaSanPham,sp.TenSanPham, ncc.TenNhaCungCap, lsp.TenLoaiSP,sp.SoLuong,sp.DonGiaNhap,sp.DonGiaBan,sp.HinhAnh,sp.GhiChu"
+        String sql = "select sp.MaSanPham,sp.TenSanPham, ncc.TenNhaCungCap, lsp.TenLoaiSP,sp.HinhAnh,sp.GhiChu"
                 + " from SanPham sp, NhaCungCap ncc, LoaiSanPham lsp"
                 + " where TenSanPham like N'%" + ten + "%' and sp.MaNhaCungCap = ncc.MaNhaCungCap and sp.MaLoaiSP = lsp.MaLoaiSP";
         try (Connection con = ConnectSQL.getConnection();
@@ -72,9 +72,6 @@ public class SanPhamControll {
         sp.setTenSanPham(rs.getString("TenSanPham"));
         sp.setMaNhaCungCap(rs.getString("TenNhaCungCap"));
         sp.setMaLoaiSP(rs.getString("TenLoaiSP"));
-        sp.setSoLuong(rs.getInt("SoLuong"));
-        sp.setDonGiaNhap(rs.getDouble("DonGiaNhap"));
-        sp.setDonGiaBan(rs.getDouble("DonGiaBan"));
         //sp.setHinhAnh(rs.getBytes("HinhAnh"));
         Blob blob = rs.getBlob("HinhAnh");
         if (blob != null) {
@@ -151,51 +148,44 @@ public class SanPhamControll {
     }
 
     public boolean insert(SanPham sp) throws Exception {
-        String sql = " INSERT INTO dbo.SanPham(MaSanPham,MaNhaCungCap,MaLoaiSP,TenSanPham,SoLuong,DonGiaNhap,DonGiaBan,HinhAnh,GhiChu,TrangThai)"
-                + " VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql = " INSERT INTO dbo.SanPham(MaSanPham,MaNhaCungCap,MaLoaiSP,TenSanPham,HinhAnh,GhiChu,TrangThai)"
+                + " VALUES(?,?,?,?,?,?,?)";
         try (Connection conn = ConnectSQL.getConnection();
                 PreparedStatement pstm = conn.prepareCall(sql);) {
             pstm.setString(1, sp.getMaSanPham());
             pstm.setString(2, sp.getMaNhaCungCap());
             pstm.setString(3, sp.getMaLoaiSP());
             pstm.setString(4, sp.getTenSanPham());
-            pstm.setInt(5, sp.getSoLuong());
-            pstm.setDouble(6, sp.getDonGiaNhap());
-            pstm.setDouble(7, sp.getDonGiaBan());
-
             if (sp.getHinhAnh() != null) {
                 Blob hinhanh = new SerialBlob(sp.getHinhAnh());
-                pstm.setBlob(8, hinhanh);
+                pstm.setBlob(5, hinhanh);
             } else {
                 Blob hinhanh = null;
-                pstm.setBlob(8, hinhanh);
+                pstm.setBlob(5, hinhanh);
             }
-            pstm.setString(9, sp.getGhiChu());
-            pstm.setInt(10, 0);
+            pstm.setString(6, sp.getGhiChu());
+            pstm.setInt(7, 0);
             return pstm.executeUpdate() > 0;
         }
     }
 
     public boolean update(SanPham sp) throws Exception {
-        String sql = "  UPDATE dbo.SanPham SET MaNhaCungCap = ?,MaLoaiSP = ?,TenSanPham = ?,SoLuong = ?,DonGiaNhap = ?,DonGiaBan = ?,HinhAnh = ?,GhiChu = ?"
+        String sql = "  UPDATE dbo.SanPham SET MaNhaCungCap = ?,MaLoaiSP = ?,TenSanPham = ?,HinhAnh = ?,GhiChu = ?"
                 + " Where MaSanPham = ?";
         try (Connection conn = ConnectSQL.getConnection();
                 PreparedStatement pstm = conn.prepareCall(sql);) {
             pstm.setString(1, sp.getMaNhaCungCap());
             pstm.setString(2, sp.getMaLoaiSP());
             pstm.setString(3, sp.getTenSanPham());
-            pstm.setFloat(4, sp.getSoLuong());
-            pstm.setDouble(5, sp.getDonGiaNhap());
-            pstm.setDouble(6, sp.getDonGiaBan());
             if (sp.getHinhAnh() != null) {
                 Blob hinhanh = new SerialBlob(sp.getHinhAnh());
-                pstm.setBlob(7, hinhanh);
+                pstm.setBlob(4, hinhanh);
             } else {
                 Blob hinhanh = null;
-                pstm.setBlob(7, hinhanh);
+                pstm.setBlob(4, hinhanh);
             }
-            pstm.setString(8, sp.getGhiChu());
-            pstm.setString(9, sp.getMaSanPham());
+            pstm.setString(5, sp.getGhiChu());
+            pstm.setString(6, sp.getMaSanPham());
             return pstm.executeUpdate() > 0;
         }
     }
